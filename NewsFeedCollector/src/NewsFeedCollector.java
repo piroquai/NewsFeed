@@ -9,7 +9,7 @@ public class NewsFeedCollector {
         try (
                 Connection con = DBConnection.getConnection();
                 Statement stmt = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
-                ResultSet rst = stmt.executeQuery("SELECT * FROM rssentrys");
+                ResultSet rst = stmt.executeQuery("SELECT * FROM Feed1");
         ) {
             rst.last();
             System.out.println("connected");
@@ -34,7 +34,7 @@ public class NewsFeedCollector {
                     String title = message.title;
 
                     create.add(link, description, title);
-                   
+
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

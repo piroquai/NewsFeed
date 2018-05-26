@@ -7,7 +7,7 @@ public class RSScontrol {
 
     }
     public void add (String link,String description, String title){
-        String sql = "INSERT INTO rssentrys (link, description, title) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO Feed1 (link, description, title) VALUES (?, ?, ?)";
         try(            Connection con = DBConnection.getConnection();
             PreparedStatement pstmt = con.prepareStatement(sql)
         )
@@ -15,6 +15,7 @@ public class RSScontrol {
             pstmt.setString(1,link);
             pstmt.setString(2,description);
             pstmt.setString(3,title);
+
                pstmt.execute();
         } catch (SQLException e) {
             e.printStackTrace();
