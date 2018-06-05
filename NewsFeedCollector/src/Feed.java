@@ -6,60 +6,34 @@ import java.util.List;
  */
 public class Feed {
 
-	final String title;
-	final String link;
-	final String description;
-	final String language;
-	final String copyright;
-	final String pubDate;
-	final String media;
+    final String title;
+    final String link;
+    final String description;
 
-	final List<FeedMessage> entries = new ArrayList<FeedMessage>();
 
-	public Feed(String title, String link, String description, String language,
-                String copyright, String pubDate, String media) {
-		this.title = title;
-		this.link = link;
-		this.description = description;
-		this.language = language;
-		this.copyright = copyright;
-		this.pubDate = pubDate;
-		this.media =media;
-	}
+    final List<FeedMessage> entries = new ArrayList<FeedMessage>();
 
-	public List<FeedMessage> getMessages() {
-		return entries;
-	}
+    public Feed(String title, String link, String description) {
+        this.title = title;
+        this.link = link;
+        this.description = description;
 
-	public String getTitle() {
-		return title;
-	}
+    }
 
-	public String getLink() {
-		return link;
-	}
+    public List<FeedMessage> getMessages() {
+        return entries;
+    }
 
-	public String getDescription() {
-		return description;
-	}
+    public String getTitle() {
+        return title;
+    }
 
-	public String getLanguage() {
-		return language;
-	}
+    public String getLink() {
+        return link;
+    }
 
-	public String getCopyright() {
-		return copyright;
-	}
-
-	public String getPubDate() {
-		return pubDate;
-	}
-
-	@Override
-	public String toString() {
-		return "Feed [copyright=" + copyright + ", description=" + description
-				+ ", language=" + language + ", link=" + link + ", pubDate="
-				+ pubDate + ", title=" + title + "]";
-	}
+    public String getDescription() {
+        return description;
+    }
 
 }
