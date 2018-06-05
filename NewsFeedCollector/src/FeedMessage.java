@@ -6,8 +6,19 @@ public class FeedMessage {
 	String title;
 	String description;
 	String link;
-	String author;
+	String media;
 	String guid;
+	String pubDate;
+
+	public String getPubDate() {
+		return pubDate;
+	}
+
+	public void setPubDate(String pubDate) {
+		this.pubDate = pubDate;
+	}
+
+
 
 	public String getTitle() {
 		return title;
@@ -33,12 +44,12 @@ public class FeedMessage {
 		this.link = link;
 	}
 
-	public String getAuthor() {
-		return author;
+	public String getMedia() {
+		return media;
 	}
 
-	public void setAuthor(String author) {
-		this.author = author;
+	public void setMedia(String media) {
+		this.media = media;
 	}
 
 	public String getGuid() {
@@ -52,7 +63,7 @@ public class FeedMessage {
 	@Override
 	public String toString() {
 		return "FeedMessage [title=" + title + ", description=" + description
-				+ ", link=" + link + ", author=" + author + ", guid=" + guid
+				+ ", link=" + link + ", media=" + media + ", guid=" + guid + ", pubDate=" + pubDate
 				+ "]";
 	}
 

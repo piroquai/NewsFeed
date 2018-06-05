@@ -8,3 +8,5 @@ import org.springframework.data.repository.CrudRepository;
 public interface UserRepository extends CrudRepository<Feed1, Long> {
 
 }
+
+

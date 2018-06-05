@@ -1,0 +1,1248 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="complete" default="all">
+  
+  
+  <property file="build.properties"/>
+  <!-- Uncomment the following property if no tests compilation is needed -->
+  <!-- 
+  <property name="skip.tests" value="true"/>
+   -->
+  
+  <!-- Compiler options -->
+  
+  <property name="compiler.debug" value="on"/>
+  <property name="compiler.generate.no.warnings" value="off"/>
+  <property name="compiler.args" value=""/>
+  <property name="compiler.max.memory" value="700m"/>
+  <patternset id="ignored.files">
+    <exclude name="**/*.hprof/**"/>
+    <exclude name="**/*.pyc/**"/>
+    <exclude name="**/*.pyo/**"/>
+    <exclude name="**/*.rbc/**"/>
+    <exclude name="**/*.yarb/**"/>
+    <exclude name="**/*~/**"/>
+    <exclude name="**/.DS_Store/**"/>
+    <exclude name="**/.git/**"/>
+    <exclude name="**/.hg/**"/>
+    <exclude name="**/.svn/**"/>
+    <exclude name="**/CVS/**"/>
+    <exclude name="**/__pycache__/**"/>
+    <exclude name="**/_svn/**"/>
+    <exclude name="**/vssver.scc/**"/>
+    <exclude name="**/vssver2.scc/**"/>
+  </patternset>
+  <patternset id="library.patterns">
+    <include name="*.egg"/>
+    <include name="*.jar"/>
+    <include name="*.ear"/>
+    <include name="*.swc"/>
+    <include name="*.war"/>
+    <include name="*.zip"/>
+    <include name="*.ane"/>
+  </patternset>
+  <patternset id="compiler.resources">
+    <exclude name="**/?*.java"/>
+    <exclude name="**/?*.form"/>
+    <exclude name="**/?*.class"/>
+    <exclude name="**/?*.groovy"/>
+    <exclude name="**/?*.scala"/>
+    <exclude name="**/?*.flex"/>
+    <exclude name="**/?*.kt"/>
+    <exclude name="**/?*.clj"/>
+    <exclude name="**/?*.aj"/>
+  </patternset>
+  
+  <!-- JDK definitions -->
+  
+  <property name="jdk.bin.1.8" value="${jdk.home.1.8}/bin"/>
+  <path id="jdk.classpath.1.8">
+    <fileset dir="${jdk.home.1.8}">
+      <include name="jre/lib/charsets.jar"/>
+      <include name="jre/lib/deploy.jar"/>
+      <include name="jre/lib/ext/access-bridge-64.jar"/>
+      <include name="jre/lib/ext/cldrdata.jar"/>
+      <include name="jre/lib/ext/dnsns.jar"/>
+      <include name="jre/lib/ext/jaccess.jar"/>
+      <include name="jre/lib/ext/jfxrt.jar"/>
+      <include name="jre/lib/ext/localedata.jar"/>
+      <include name="jre/lib/ext/nashorn.jar"/>
+      <include name="jre/lib/ext/sunec.jar"/>
+      <include name="jre/lib/ext/sunjce_provider.jar"/>
+      <include name="jre/lib/ext/sunmscapi.jar"/>
+      <include name="jre/lib/ext/sunpkcs11.jar"/>
+      <include name="jre/lib/ext/zipfs.jar"/>
+      <include name="jre/lib/javaws.jar"/>
+      <include name="jre/lib/jce.jar"/>
+      <include name="jre/lib/jfr.jar"/>
+      <include name="jre/lib/jfxswt.jar"/>
+      <include name="jre/lib/jsse.jar"/>
+      <include name="jre/lib/management-agent.jar"/>
+      <include name="jre/lib/plugin.jar"/>
+      <include name="jre/lib/resources.jar"/>
+      <include name="jre/lib/rt.jar"/>
+      <include name="../../../glassfish5/docs/api/javaee-full/javax"/>
+    </fileset>
+  </path>
+  
+  <property name="project.jdk.home" value="${jdk.home.1.8}"/>
+  <property name="project.jdk.bin" value="${jdk.bin.1.8}"/>
+  <property name="project.jdk.classpath" value="jdk.classpath.1.8"/>
+  
+  
+  <!-- Project Libraries -->
+  
+  <path id="library.gradle:_antlr:antlr:2.7.7.classpath">
+    <pathelement location="${basedir}/../../.gradle/caches/modules-2/files-2.1/antlr/antlr/2.7.7/83cd2cd674a217ade95a4bb83a8a14f351f48bd0/antlr-2.7.7.jar"/>
+  </path>
+  
+  <path id="library.gradle:_ch.qos.logback:logback-classic:1.2.3.classpath">
+    <pathelement location="${basedir}/../../.gradle/caches/modules-2/files-2.1/ch.qos.logback/logback-classic/1.2.3/7c4f3c474fb2c041d8028740440937705ebb473a/logback-classic-1.2.3.jar"/>
+  </path>
+  
+  <path id="library.gradle:_ch.qos.logback:logback-core:1.2.3.classpath">
+    <pathelement location="${basedir}/../../.gradle/caches/modules-2/files-2.1/ch.qos.logback/logback-core/1.2.3/864344400c3d4d92dfeb0a305dc87d953677c03c/logback-core-1.2.3.jar"/>
+  </path>
+  
+  <path id="library.gradle:_com.fasterxml.jackson.core:jackson-annotations:2.9.0.classpath">
+    <pathelement location="${basedir}/../../.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-annotations/2.9.0/7c10d545325e3a6e72e06381afe469fd40eb701/jackson-annotations-2.9.0.jar"/>
+  </path>
+  
+  <path id="library.gradle:_com.fasterxml.jackson.core:jackson-core:2.9.5.classpath">
+    <pathelement location="${basedir}/../../.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-core/2.9.5/a22ac51016944b06fd9ffbc9541c6e7ce5eea117/jackson-core-2.9.5.jar"/>
+  </path>
+  
+  <path id="library.gradle:_com.fasterxml.jackson.core:jackson-databind:2.9.5.classpath">
+    <pathelement location="${basedir}/../../.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-databind/2.9.5/3490508379d065fe3fcb80042b62f630f7588606/jackson-databind-2.9.5.jar"/>
+  </path>
+  
+  <path id="library.gradle:_com.fasterxml.jackson.datatype:jackson-datatype-jdk8:2.9.5.classpath">
+    <pathelement location="${basedir}/../../.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.datatype/jackson-datatype-jdk8/2.9.5/23e37f085279ba316c0df923513b81609e1d1f6/jackson-datatype-jdk8-2.9.5.jar"/>
+  </path>
+  
+  <path id="library.gradle:_com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.9.5.classpath">
+    <pathelement location="${basedir}/../../.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.datatype/jackson-datatype-jsr310/2.9.5/d1f0d11e816bc04e222a261106ca138801841c2d/jackson-datatype-jsr310-2.9.5.jar"/>
+  </path>
+  
+  <path id="library.gradle:_com.fasterxml.jackson.module:jackson-module-parameter-names:2.9.5.classpath">
+    <pathelement location="${basedir}/../../.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.module/jackson-module-parameter-names/2.9.5/f824c60751ffb7bfc3a0d30dfe0e42317d8e67f5/jackson-module-parameter-names-2.9.5.jar"/>
+  </path>
+  
+  <path id="library.gradle:_com.fasterxml:classmate:1.3.4.classpath">
+    <pathelement location="${basedir}/../../.gradle/caches/modules-2/files-2.1/com.fasterxml/classmate/1.3.4/3d5f48f10bbe4eb7bd862f10c0583be2e0053c6/classmate-1.3.4.jar"/>
+  </path>
+  
+  <path id="library.gradle:_com.jayway.jsonpath:json-path:2.4.0.classpath">
+    <pathelement location="${basedir}/../../.gradle/caches/modules-2/files-2.1/com.jayway.jsonpath/json-path/2.4.0/765a4401ceb2dc8d40553c2075eb80a8fa35c2ae/json-path-2.4.0.jar"/>
+  </path>
+  
+  <path id="library.gradle:_com.vaadin.external.google:android-json:0.0.20131108.vaadin1.classpath">
+    <pathelement location="${basedir}/../../.gradle/caches/modules-2/files-2.1/com.vaadin.external.google/android-json/0.0.20131108.vaadin1/fa26d351fe62a6a17f5cda1287c1c6110dec413f/android-json-0.0.20131108.vaadin1.jar"/>
+  </path>
+  
+  <path id="library.gradle:_com.zaxxer:hikaricp:2.7.9.classpath">
+    <pathelement location="${basedir}/../../.gradle/caches/modules-2/files-2.1/com.zaxxer/HikariCP/2.7.9/a83113d2c091d0d0f853dad3217bd7df3beb6ae3/HikariCP-2.7.9.jar"/>
+  </path>
+  
+  <path id="library.gradle:_dom4j:dom4j:1.6.1.classpath">
+    <pathelement location="${basedir}/../../.gradle/caches/modules-2/files-2.1/dom4j/dom4j/1.6.1/5d3ccc056b6f056dbf0dddfdf43894b9065a8f94/dom4j-1.6.1.jar"/>
+  </path>
+  
+  <path id="library.gradle:_javax.annotation:javax.annotation-api:1.3.2.classpath">
+    <pathelement location="${basedir}/../../.gradle/caches/modules-2/files-2.1/javax.annotation/javax.annotation-api/1.3.2/934c04d3cfef185a8008e7bf34331b79730a9d43/javax.annotation-api-1.3.2.jar"/>
+  </path>
+  
+  <path id="library.gradle:_javax.transaction:javax.transaction-api:1.2.classpath">
+    <pathelement location="${basedir}/../../.gradle/caches/modules-2/files-2.1/javax.transaction/javax.transaction-api/1.2/d81aff979d603edd90dcd8db2abc1f4ce6479e3e/javax.transaction-api-1.2.jar"/>
+  </path>
+  
+  <path id="library.gradle:_javax.validation:validation-api:2.0.1.final.classpath">
+    <pathelement location="${basedir}/../../.gradle/caches/modules-2/files-2.1/javax.validation/validation-api/2.0.1.Final/cb855558e6271b1b32e716d24cb85c7f583ce09e/validation-api-2.0.1.Final.jar"/>
+  </path>
+  
+  <path id="library.gradle:_junit:junit:4.12.classpath">
+    <pathelement location="${basedir}/../../.gradle/caches/modules-2/files-2.1/junit/junit/4.12/2973d150c0dc1fefe998f834810d68f278ea58ec/junit-4.12.jar"/>
+  </path>
+  
+  <path id="library.gradle:_mysql:mysql-connector-java:5.1.46.classpath">
+    <pathelement location="${basedir}/../../.gradle/caches/modules-2/files-2.1/mysql/mysql-connector-java/5.1.46/9a3e63b387e376364211e96827bc27db8d7a92e9/mysql-connector-java-5.1.46.jar"/>
+  </path>
+  
+  <path id="library.gradle:_net.bytebuddy:byte-buddy-agent:1.7.11.classpath">
+    <pathelement location="${basedir}/../../.gradle/caches/modules-2/files-2.1/net.bytebuddy/byte-buddy-agent/1.7.11/b425a8933ca07edd03c6dbc8bc3b595fba9780de/byte-buddy-agent-1.7.11.jar"/>
+  </path>
+  
+  <path id="library.gradle:_net.bytebuddy:byte-buddy:1.7.11.classpath">
+    <pathelement location="${basedir}/../../.gradle/caches/modules-2/files-2.1/net.bytebuddy/byte-buddy/1.7.11/f02857a4e2c66ccbe7aaad6100a0a6c461bce9b3/byte-buddy-1.7.11.jar"/>
+  </path>
+  
+  <path id="library.gradle:_net.minidev:accessors-smart:1.2.classpath">
+    <pathelement location="${basedir}/../../.gradle/caches/modules-2/files-2.1/net.minidev/accessors-smart/1.2/c592b500269bfde36096641b01238a8350f8aa31/accessors-smart-1.2.jar"/>
+  </path>
+  
+  <path id="library.gradle:_net.minidev:json-smart:2.3.classpath">
+    <pathelement location="${basedir}/../../.gradle/caches/modules-2/files-2.1/net.minidev/json-smart/2.3/7396407491352ce4fa30de92efb158adb76b5b/json-smart-2.3.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.apache.logging.log4j:log4j-api:2.10.0.classpath">
+    <pathelement location="${basedir}/../../.gradle/caches/modules-2/files-2.1/org.apache.logging.log4j/log4j-api/2.10.0/fec5797a55b786184a537abd39c3fa1449d752d6/log4j-api-2.10.0.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.apache.logging.log4j:log4j-to-slf4j:2.10.0.classpath">
+    <pathelement location="${basedir}/../../.gradle/caches/modules-2/files-2.1/org.apache.logging.log4j/log4j-to-slf4j/2.10.0/f7e631ccf49cfc0aefa4a2a728da7d374c05bd3c/log4j-to-slf4j-2.10.0.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.apache.tomcat.embed:tomcat-embed-core:8.5.31.classpath">
+    <pathelement location="${basedir}/../../.gradle/caches/modules-2/files-2.1/org.apache.tomcat.embed/tomcat-embed-core/8.5.31/f5adf7ed8c34aa005b22b6a2dc7b6796e10e9c79/tomcat-embed-core-8.5.31.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.apache.tomcat.embed:tomcat-embed-el:8.5.31.classpath">
+    <pathelement location="${basedir}/../../.gradle/caches/modules-2/files-2.1/org.apache.tomcat.embed/tomcat-embed-el/8.5.31/3a536e1ac71b82627c3a7408eb38fa0704cb9034/tomcat-embed-el-8.5.31.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.apache.tomcat.embed:tomcat-embed-websocket:8.5.31.classpath">
+    <pathelement location="${basedir}/../../.gradle/caches/modules-2/files-2.1/org.apache.tomcat.embed/tomcat-embed-websocket/8.5.31/6564e716b89de5eaa0dd234ae7989576503ddf3/tomcat-embed-websocket-8.5.31.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.aspectj:aspectjweaver:1.8.13.classpath">
+    <pathelement location="${basedir}/../../.gradle/caches/modules-2/files-2.1/org.aspectj/aspectjweaver/1.8.13/ad94df2a28d658a40dc27bbaff6a1ce5fbf04e9b/aspectjweaver-1.8.13.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.assertj:assertj-core:3.9.1.classpath">
+    <pathelement location="${basedir}/../../.gradle/caches/modules-2/files-2.1/org.assertj/assertj-core/3.9.1/c5ce126b15f28d56cd8f960c1a6a058b9c9aea87/assertj-core-3.9.1.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.hamcrest:hamcrest-core:1.3.classpath">
+    <pathelement location="${basedir}/../../.gradle/caches/modules-2/files-2.1/org.hamcrest/hamcrest-core/1.3/42a25dc3219429f0e5d060061f71acb49bf010a0/hamcrest-core-1.3.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.hamcrest:hamcrest-library:1.3.classpath">
+    <pathelement location="${basedir}/../../.gradle/caches/modules-2/files-2.1/org.hamcrest/hamcrest-library/1.3/4785a3c21320980282f9f33d0d1264a69040538f/hamcrest-library-1.3.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.hibernate.common:hibernate-commons-annotations:5.0.1.final.classpath">
+    <pathelement location="${basedir}/../../.gradle/caches/modules-2/files-2.1/org.hibernate.common/hibernate-commons-annotations/5.0.1.Final/71e1cff3fcb20d3b3af4f3363c3ddb24d33c6879/hibernate-commons-annotations-5.0.1.Final.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.hibernate.javax.persistence:hibernate-jpa-2.1-api:1.0.0.final.classpath">
+    <pathelement location="${basedir}/../../.gradle/caches/modules-2/files-2.1/org.hibernate.javax.persistence/hibernate-jpa-2.1-api/1.0.0.Final/5e731d961297e5a07290bfaf3db1fbc8bbbf405a/hibernate-jpa-2.1-api-1.0.0.Final.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.hibernate.validator:hibernate-validator:6.0.9.final.classpath">
+    <pathelement location="${basedir}/../../.gradle/caches/modules-2/files-2.1/org.hibernate.validator/hibernate-validator/6.0.9.Final/b149e4cce82379f11f6129eb3187ca8ae5404005/hibernate-validator-6.0.9.Final.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.hibernate:hibernate-core:5.2.17.final.classpath">
+    <pathelement location="${basedir}/../../.gradle/caches/modules-2/files-2.1/org.hibernate/hibernate-core/5.2.17.Final/f2dc36470e7a2ffcf6106bb1625ecf5b54bb5f65/hibernate-core-5.2.17.Final.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.javassist:javassist:3.22.0-ga.classpath">
+    <pathelement location="${basedir}/../../.gradle/caches/modules-2/files-2.1/org.javassist/javassist/3.22.0-GA/3e83394258ae2089be7219b971ec21a8288528ad/javassist-3.22.0-GA.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.jboss.logging:jboss-logging:3.3.2.final.classpath">
+    <pathelement location="${basedir}/../../.gradle/caches/modules-2/files-2.1/org.jboss.logging/jboss-logging/3.3.2.Final/3789d00e859632e6c6206adc0c71625559e6e3b0/jboss-logging-3.3.2.Final.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.jboss:jandex:2.0.3.final.classpath">
+    <pathelement location="${basedir}/../../.gradle/caches/modules-2/files-2.1/org.jboss/jandex/2.0.3.Final/bfc4d6257dbff7a33a357f0de116be6ff951d849/jandex-2.0.3.Final.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.mockito:mockito-core:2.15.0.classpath">
+    <pathelement location="${basedir}/../../.gradle/caches/modules-2/files-2.1/org.mockito/mockito-core/2.15.0/b84bfbbc29cd22c9529409627af6ea2897f4fa85/mockito-core-2.15.0.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.objenesis:objenesis:2.6.classpath">
+    <pathelement location="${basedir}/../../.gradle/caches/modules-2/files-2.1/org.objenesis/objenesis/2.6/639033469776fd37c08358c6b92a4761feb2af4b/objenesis-2.6.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.ow2.asm:asm:5.0.4.classpath">
+    <pathelement location="${basedir}/../../.gradle/caches/modules-2/files-2.1/org.ow2.asm/asm/5.0.4/da08b8cce7bbf903602a25a3a163ae252435795/asm-5.0.4.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.skyscreamer:jsonassert:1.5.0.classpath">
+    <pathelement location="${basedir}/../../.gradle/caches/modules-2/files-2.1/org.skyscreamer/jsonassert/1.5.0/6c9d5fe2f59da598d9aefc1cfc6528ff3cf32df3/jsonassert-1.5.0.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.slf4j:jul-to-slf4j:1.7.25.classpath">
+    <pathelement location="${basedir}/../../.gradle/caches/modules-2/files-2.1/org.slf4j/jul-to-slf4j/1.7.25/af5364cd6679bfffb114f0dec8a157aaa283b76/jul-to-slf4j-1.7.25.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.slf4j:slf4j-api:1.7.25.classpath">
+    <pathelement location="${basedir}/../../.gradle/caches/modules-2/files-2.1/org.slf4j/slf4j-api/1.7.25/da76ca59f6a57ee3102f8f9bd9cee742973efa8a/slf4j-api-1.7.25.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.springframework.boot:spring-boot-autoconfigure:2.0.2.release.classpath">
+    <pathelement location="${basedir}/../../.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-autoconfigure/2.0.2.RELEASE/f4b25e753e4955337a138d8b1550236b5efe5b3b/spring-boot-autoconfigure-2.0.2.RELEASE.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.springframework.boot:spring-boot-starter-aop:2.0.2.release.classpath">
+    <pathelement location="${basedir}/../../.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-starter-aop/2.0.2.RELEASE/b0b0c7dcfdffaef1b04886c0279772905bc7e9d2/spring-boot-starter-aop-2.0.2.RELEASE.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.springframework.boot:spring-boot-starter-data-jpa:2.0.2.release.classpath">
+    <pathelement location="${basedir}/../../.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-starter-data-jpa/2.0.2.RELEASE/a277d15c247684aaef38852a2e71b8b1ef7357e6/spring-boot-starter-data-jpa-2.0.2.RELEASE.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.springframework.boot:spring-boot-starter-jdbc:2.0.2.release.classpath">
+    <pathelement location="${basedir}/../../.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-starter-jdbc/2.0.2.RELEASE/f93c2459a06061f889b837d1c2503055df024778/spring-boot-starter-jdbc-2.0.2.RELEASE.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.springframework.boot:spring-boot-starter-json:2.0.2.release.classpath">
+    <pathelement location="${basedir}/../../.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-starter-json/2.0.2.RELEASE/5edda979838ced5314b8f58a958fe9d6b4b3badd/spring-boot-starter-json-2.0.2.RELEASE.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.springframework.boot:spring-boot-starter-logging:2.0.2.release.classpath">
+    <pathelement location="${basedir}/../../.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-starter-logging/2.0.2.RELEASE/b56d7d1931792d6e58dbd41f956912359ba85238/spring-boot-starter-logging-2.0.2.RELEASE.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.springframework.boot:spring-boot-starter-test:2.0.2.release.classpath">
+    <pathelement location="${basedir}/../../.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-starter-test/2.0.2.RELEASE/d9e090412f318586e0f277e24740b79b58ef190b/spring-boot-starter-test-2.0.2.RELEASE.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.springframework.boot:spring-boot-starter-tomcat:2.0.2.release.classpath">
+    <pathelement location="${basedir}/../../.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-starter-tomcat/2.0.2.RELEASE/cedbfb18762e1c220007c768bfc5b773f5b30f8a/spring-boot-starter-tomcat-2.0.2.RELEASE.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.springframework.boot:spring-boot-starter-web:2.0.2.release.classpath">
+    <pathelement location="${basedir}/../../.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-starter-web/2.0.2.RELEASE/b6ef0cf4d0a7c6c7e93ff524b84cd1d8f87f67d9/spring-boot-starter-web-2.0.2.RELEASE.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.springframework.boot:spring-boot-starter:2.0.2.release.classpath">
+    <pathelement location="${basedir}/../../.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-starter/2.0.2.RELEASE/1cda94f0dfcf2b065191782a54b84d2abf96391/spring-boot-starter-2.0.2.RELEASE.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.springframework.boot:spring-boot-test-autoconfigure:2.0.2.release.classpath">
+    <pathelement location="${basedir}/../../.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-test-autoconfigure/2.0.2.RELEASE/4993bdd96a4c02bc5b5703862d99ef4c563f25d0/spring-boot-test-autoconfigure-2.0.2.RELEASE.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.springframework.boot:spring-boot-test:2.0.2.release.classpath">
+    <pathelement location="${basedir}/../../.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-test/2.0.2.RELEASE/fc85812e6543312a3b0ea9fbbdfd4a51183380a3/spring-boot-test-2.0.2.RELEASE.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.springframework.boot:spring-boot:2.0.2.release.classpath">
+    <pathelement location="${basedir}/../../.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot/2.0.2.RELEASE/15012cf02e9f77938244e554f0598535fdd1cb38/spring-boot-2.0.2.RELEASE.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.springframework.data:spring-data-commons:2.0.7.release.classpath">
+    <pathelement location="${basedir}/../../.gradle/caches/modules-2/files-2.1/org.springframework.data/spring-data-commons/2.0.7.RELEASE/7faa0fb2ffa50a5c50ad9f10118095ae24d5c6e1/spring-data-commons-2.0.7.RELEASE.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.springframework.data:spring-data-jpa:2.0.7.release.classpath">
+    <pathelement location="${basedir}/../../.gradle/caches/modules-2/files-2.1/org.springframework.data/spring-data-jpa/2.0.7.RELEASE/9f201f3d3435a9e5422e0edcff3475c46215ffb/spring-data-jpa-2.0.7.RELEASE.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.springframework:spring-aop:5.0.6.release.classpath">
+    <pathelement location="${basedir}/../../.gradle/caches/modules-2/files-2.1/org.springframework/spring-aop/5.0.6.RELEASE/74078df698992054c1c1a8f705763a6c7b4b914c/spring-aop-5.0.6.RELEASE.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.springframework:spring-aspects:5.0.6.release.classpath">
+    <pathelement location="${basedir}/../../.gradle/caches/modules-2/files-2.1/org.springframework/spring-aspects/5.0.6.RELEASE/45a7631a64eb82625067587b9796d4418d9e0568/spring-aspects-5.0.6.RELEASE.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.springframework:spring-beans:5.0.6.release.classpath">
+    <pathelement location="${basedir}/../../.gradle/caches/modules-2/files-2.1/org.springframework/spring-beans/5.0.6.RELEASE/d609b83cd8a71650a70778cf8d02c9a05b9161fe/spring-beans-5.0.6.RELEASE.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.springframework:spring-context:5.0.6.release.classpath">
+    <pathelement location="${basedir}/../../.gradle/caches/modules-2/files-2.1/org.springframework/spring-context/5.0.6.RELEASE/8b73b742ef0ddce04f0f1068f305de240b00ce0d/spring-context-5.0.6.RELEASE.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.springframework:spring-core:5.0.6.release.classpath">
+    <pathelement location="${basedir}/../../.gradle/caches/modules-2/files-2.1/org.springframework/spring-core/5.0.6.RELEASE/984a52455b1be596b7f1a29f62d21d2f483eb764/spring-core-5.0.6.RELEASE.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.springframework:spring-expression:5.0.6.release.classpath">
+    <pathelement location="${basedir}/../../.gradle/caches/modules-2/files-2.1/org.springframework/spring-expression/5.0.6.RELEASE/dec57ae5e6f0dfd4c6cfc199aa13ed268c3e1a65/spring-expression-5.0.6.RELEASE.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.springframework:spring-jcl:5.0.6.release.classpath">
+    <pathelement location="${basedir}/../../.gradle/caches/modules-2/files-2.1/org.springframework/spring-jcl/5.0.6.RELEASE/295ee4e8657e9c1fd327735c01d5fbce339cc44d/spring-jcl-5.0.6.RELEASE.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.springframework:spring-jdbc:5.0.6.release.classpath">
+    <pathelement location="${basedir}/../../.gradle/caches/modules-2/files-2.1/org.springframework/spring-jdbc/5.0.6.RELEASE/7d4de1ee9b042774e09ceb88393e5a564e342729/spring-jdbc-5.0.6.RELEASE.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.springframework:spring-orm:5.0.6.release.classpath">
+    <pathelement location="${basedir}/../../.gradle/caches/modules-2/files-2.1/org.springframework/spring-orm/5.0.6.RELEASE/7a08073597b79dfcd4db1cffa924f2b991a14a20/spring-orm-5.0.6.RELEASE.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.springframework:spring-test:5.0.6.release.classpath">
+    <pathelement location="${basedir}/../../.gradle/caches/modules-2/files-2.1/org.springframework/spring-test/5.0.6.RELEASE/dbc99b288774b2e07d94bc14fe38d556bc3ed34a/spring-test-5.0.6.RELEASE.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.springframework:spring-tx:5.0.6.release.classpath">
+    <pathelement location="${basedir}/../../.gradle/caches/modules-2/files-2.1/org.springframework/spring-tx/5.0.6.RELEASE/1b6ffc44f2d59507a0fce1084fcc21788b13904/spring-tx-5.0.6.RELEASE.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.springframework:spring-web:5.0.6.release.classpath">
+    <pathelement location="${basedir}/../../.gradle/caches/modules-2/files-2.1/org.springframework/spring-web/5.0.6.RELEASE/89e89de3025165998118590613aedc6df8d64af6/spring-web-5.0.6.RELEASE.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.springframework:spring-webmvc:5.0.6.release.classpath">
+    <pathelement location="${basedir}/../../.gradle/caches/modules-2/files-2.1/org.springframework/spring-webmvc/5.0.6.RELEASE/1361c5d1cf46665ee01de5dc1ca447c3be174c19/spring-webmvc-5.0.6.RELEASE.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.xmlunit:xmlunit-core:2.5.1.classpath">
+    <pathelement location="${basedir}/../../.gradle/caches/modules-2/files-2.1/org.xmlunit/xmlunit-core/2.5.1/4ffdb346572a7356f7521cd3119ce5287d2e339d/xmlunit-core-2.5.1.jar"/>
+  </path>
+  
+  <path id="library.gradle:_org.yaml:snakeyaml:1.19.classpath">
+    <pathelement location="${basedir}/../../.gradle/caches/modules-2/files-2.1/org.yaml/snakeyaml/1.19/2d998d3d674b172a588e54ab619854d073f555b5/snakeyaml-1.19.jar"/>
+  </path>
+  
+  
+  <!-- Application Server Libraries -->
+  <!-- Register Custom Compiler Taskdefs -->
+  <property name="javac2.home" value="${idea.home}/lib"/>
+  <path id="javac2.classpath">
+    <fileset dir="${javac2.home}">
+      <include name="javac2.jar"/>
+      <include name="jdom.jar"/>
+      <include name="asm-all*.jar"/>
+      <include name="jgoodies-forms.jar"/>
+    </fileset>
+  </path>
+  <target name="register.custom.compilers">
+    <taskdef name="javac2" classname="com.intellij.ant.Javac2" classpathref="javac2.classpath"/>
+    <taskdef name="instrumentIdeaExtensions" classname="com.intellij.ant.InstrumentIdeaExtensions" classpathref="javac2.classpath"/>
+  </target>
+  
+  <!-- Modules -->
+  
+  
+  <!-- Module complete -->
+  
+  <dirname property="module.complete.basedir" file="${ant.file}"/>
+  
+  
+  <property name="module.jdk.home.complete" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.complete" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.complete" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.complete" value="-encoding UTF-8 -source 8 -target 8 ${compiler.args}"/>
+  
+  <property name="complete.output.dir" value="${module.complete.basedir}/out/production/complete"/>
+  <property name="complete.testoutput.dir" value="${module.complete.basedir}/out/test/complete"/>
+  
+  <path id="complete.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="complete.module.production.classpath">
+    <path refid="${module.jdk.classpath.complete}"/>
+  </path>
+  
+  <path id="complete.runtime.production.module.classpath">
+    <pathelement location="${complete.output.dir}"/>
+  </path>
+  
+  <path id="complete.module.classpath">
+    <path refid="${module.jdk.classpath.complete}"/>
+    <pathelement location="${complete.output.dir}"/>
+  </path>
+  
+  <path id="complete.runtime.module.classpath">
+    <pathelement location="${complete.testoutput.dir}"/>
+    <pathelement location="${complete.output.dir}"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.complete">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.complete">
+    <patternset refid="excluded.from.module.complete"/>
+  </patternset>
+  
+  
+  <target name="compile.module.complete" depends="compile.module.complete.production,compile.module.complete.tests" description="Compile module complete"/>
+  
+  <target name="compile.module.complete.production" depends="register.custom.compilers" description="Compile module complete; production classes"/>
+  
+  <target name="compile.module.complete.tests" depends="register.custom.compilers,compile.module.complete.production" description="compile module complete; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.complete" description="cleanup module">
+    <delete dir="${complete.output.dir}"/>
+    <delete dir="${complete.testoutput.dir}"/>
+  </target>
+  
+  
+  <!-- Module complete_main -->
+  
+  <dirname property="module.complete_main.basedir" file="${ant.file}"/>
+  
+  
+  <property name="module.jdk.home.complete_main" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.complete_main" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.complete_main" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.complete_main" value="-encoding UTF-8 -source 8 -target 8 ${compiler.args}"/>
+  
+  <property name="complete_main.output.dir" value="${module.complete_main.basedir}/out/production/classes"/>
+  <property name="complete_main.testoutput.dir" value="${module.complete_main.basedir}/out/production/classes"/>
+  
+  <path id="complete_main.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="complete_main.module.production.classpath">
+    <path refid="${module.jdk.classpath.complete_main}"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-web:2.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-data-jpa:2.0.2.release.classpath"/>
+    <path refid="library.gradle:_mysql:mysql-connector-java:5.1.46.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-json:2.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-aop:2.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-jdbc:2.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter:2.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-tomcat:2.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.hibernate.validator:hibernate-validator:6.0.9.final.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-webmvc:5.0.6.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-web:5.0.6.release.classpath"/>
+    <path refid="library.gradle:_org.hibernate:hibernate-core:5.2.17.final.classpath"/>
+    <path refid="library.gradle:_javax.transaction:javax.transaction-api:1.2.classpath"/>
+    <path refid="library.gradle:_org.springframework.data:spring-data-jpa:2.0.7.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-aspects:5.0.6.release.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-autoconfigure:2.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot:2.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-logging:2.0.2.release.classpath"/>
+    <path refid="library.gradle:_javax.annotation:javax.annotation-api:1.3.2.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-context:5.0.6.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-aop:5.0.6.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-orm:5.0.6.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-jdbc:5.0.6.release.classpath"/>
+    <path refid="library.gradle:_org.springframework.data:spring-data-commons:2.0.7.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-tx:5.0.6.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-beans:5.0.6.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-expression:5.0.6.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-core:5.0.6.release.classpath"/>
+    <path refid="library.gradle:_org.yaml:snakeyaml:1.19.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.datatype:jackson-datatype-jdk8:2.9.5.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.9.5.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.module:jackson-module-parameter-names:2.9.5.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.core:jackson-databind:2.9.5.classpath"/>
+    <path refid="library.gradle:_org.apache.tomcat.embed:tomcat-embed-websocket:8.5.31.classpath"/>
+    <path refid="library.gradle:_org.apache.tomcat.embed:tomcat-embed-core:8.5.31.classpath"/>
+    <path refid="library.gradle:_org.apache.tomcat.embed:tomcat-embed-el:8.5.31.classpath"/>
+    <path refid="library.gradle:_javax.validation:validation-api:2.0.1.final.classpath"/>
+    <path refid="library.gradle:_org.hibernate.common:hibernate-commons-annotations:5.0.1.final.classpath"/>
+    <path refid="library.gradle:_org.jboss.logging:jboss-logging:3.3.2.final.classpath"/>
+    <path refid="library.gradle:_com.fasterxml:classmate:1.3.4.classpath"/>
+    <path refid="library.gradle:_org.aspectj:aspectjweaver:1.8.13.classpath"/>
+    <path refid="library.gradle:_com.zaxxer:hikaricp:2.7.9.classpath"/>
+    <path refid="library.gradle:_org.hibernate.javax.persistence:hibernate-jpa-2.1-api:1.0.0.final.classpath"/>
+    <path refid="library.gradle:_org.javassist:javassist:3.22.0-ga.classpath"/>
+    <path refid="library.gradle:_antlr:antlr:2.7.7.classpath"/>
+    <path refid="library.gradle:_org.jboss:jandex:2.0.3.final.classpath"/>
+    <path refid="library.gradle:_dom4j:dom4j:1.6.1.classpath"/>
+    <path refid="library.gradle:_ch.qos.logback:logback-classic:1.2.3.classpath"/>
+    <path refid="library.gradle:_org.apache.logging.log4j:log4j-to-slf4j:2.10.0.classpath"/>
+    <path refid="library.gradle:_org.slf4j:jul-to-slf4j:1.7.25.classpath"/>
+    <path refid="library.gradle:_org.slf4j:slf4j-api:1.7.25.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-jcl:5.0.6.release.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.core:jackson-annotations:2.9.0.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.core:jackson-core:2.9.5.classpath"/>
+    <path refid="library.gradle:_ch.qos.logback:logback-core:1.2.3.classpath"/>
+    <path refid="library.gradle:_org.apache.logging.log4j:log4j-api:2.10.0.classpath"/>
+  </path>
+  
+  <path id="complete_main.runtime.production.module.classpath">
+    <pathelement location="${complete_main.output.dir}"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-web:2.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-data-jpa:2.0.2.release.classpath"/>
+    <path refid="library.gradle:_mysql:mysql-connector-java:5.1.46.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-json:2.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-aop:2.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-jdbc:2.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter:2.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-tomcat:2.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.hibernate.validator:hibernate-validator:6.0.9.final.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-webmvc:5.0.6.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-web:5.0.6.release.classpath"/>
+    <path refid="library.gradle:_org.hibernate:hibernate-core:5.2.17.final.classpath"/>
+    <path refid="library.gradle:_javax.transaction:javax.transaction-api:1.2.classpath"/>
+    <path refid="library.gradle:_org.springframework.data:spring-data-jpa:2.0.7.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-aspects:5.0.6.release.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-autoconfigure:2.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot:2.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-logging:2.0.2.release.classpath"/>
+    <path refid="library.gradle:_javax.annotation:javax.annotation-api:1.3.2.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-context:5.0.6.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-aop:5.0.6.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-orm:5.0.6.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-jdbc:5.0.6.release.classpath"/>
+    <path refid="library.gradle:_org.springframework.data:spring-data-commons:2.0.7.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-tx:5.0.6.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-beans:5.0.6.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-expression:5.0.6.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-core:5.0.6.release.classpath"/>
+    <path refid="library.gradle:_org.yaml:snakeyaml:1.19.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.datatype:jackson-datatype-jdk8:2.9.5.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.9.5.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.module:jackson-module-parameter-names:2.9.5.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.core:jackson-databind:2.9.5.classpath"/>
+    <path refid="library.gradle:_org.apache.tomcat.embed:tomcat-embed-websocket:8.5.31.classpath"/>
+    <path refid="library.gradle:_org.apache.tomcat.embed:tomcat-embed-core:8.5.31.classpath"/>
+    <path refid="library.gradle:_org.apache.tomcat.embed:tomcat-embed-el:8.5.31.classpath"/>
+    <path refid="library.gradle:_javax.validation:validation-api:2.0.1.final.classpath"/>
+    <path refid="library.gradle:_org.hibernate.common:hibernate-commons-annotations:5.0.1.final.classpath"/>
+    <path refid="library.gradle:_org.jboss.logging:jboss-logging:3.3.2.final.classpath"/>
+    <path refid="library.gradle:_com.fasterxml:classmate:1.3.4.classpath"/>
+    <path refid="library.gradle:_org.aspectj:aspectjweaver:1.8.13.classpath"/>
+    <path refid="library.gradle:_com.zaxxer:hikaricp:2.7.9.classpath"/>
+    <path refid="library.gradle:_org.hibernate.javax.persistence:hibernate-jpa-2.1-api:1.0.0.final.classpath"/>
+    <path refid="library.gradle:_org.javassist:javassist:3.22.0-ga.classpath"/>
+    <path refid="library.gradle:_antlr:antlr:2.7.7.classpath"/>
+    <path refid="library.gradle:_org.jboss:jandex:2.0.3.final.classpath"/>
+    <path refid="library.gradle:_dom4j:dom4j:1.6.1.classpath"/>
+    <path refid="library.gradle:_ch.qos.logback:logback-classic:1.2.3.classpath"/>
+    <path refid="library.gradle:_org.apache.logging.log4j:log4j-to-slf4j:2.10.0.classpath"/>
+    <path refid="library.gradle:_org.slf4j:jul-to-slf4j:1.7.25.classpath"/>
+    <path refid="library.gradle:_org.slf4j:slf4j-api:1.7.25.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-jcl:5.0.6.release.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.core:jackson-annotations:2.9.0.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.core:jackson-core:2.9.5.classpath"/>
+    <path refid="library.gradle:_ch.qos.logback:logback-core:1.2.3.classpath"/>
+    <path refid="library.gradle:_org.apache.logging.log4j:log4j-api:2.10.0.classpath"/>
+  </path>
+  
+  <path id="complete_main.module.classpath">
+    <path refid="${module.jdk.classpath.complete_main}"/>
+    <pathelement location="${complete_main.output.dir}"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-web:2.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-data-jpa:2.0.2.release.classpath"/>
+    <path refid="library.gradle:_mysql:mysql-connector-java:5.1.46.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-json:2.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-aop:2.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-jdbc:2.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter:2.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-tomcat:2.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.hibernate.validator:hibernate-validator:6.0.9.final.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-webmvc:5.0.6.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-web:5.0.6.release.classpath"/>
+    <path refid="library.gradle:_org.hibernate:hibernate-core:5.2.17.final.classpath"/>
+    <path refid="library.gradle:_javax.transaction:javax.transaction-api:1.2.classpath"/>
+    <path refid="library.gradle:_org.springframework.data:spring-data-jpa:2.0.7.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-aspects:5.0.6.release.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-autoconfigure:2.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot:2.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-logging:2.0.2.release.classpath"/>
+    <path refid="library.gradle:_javax.annotation:javax.annotation-api:1.3.2.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-context:5.0.6.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-aop:5.0.6.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-orm:5.0.6.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-jdbc:5.0.6.release.classpath"/>
+    <path refid="library.gradle:_org.springframework.data:spring-data-commons:2.0.7.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-tx:5.0.6.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-beans:5.0.6.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-expression:5.0.6.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-core:5.0.6.release.classpath"/>
+    <path refid="library.gradle:_org.yaml:snakeyaml:1.19.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.datatype:jackson-datatype-jdk8:2.9.5.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.9.5.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.module:jackson-module-parameter-names:2.9.5.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.core:jackson-databind:2.9.5.classpath"/>
+    <path refid="library.gradle:_org.apache.tomcat.embed:tomcat-embed-websocket:8.5.31.classpath"/>
+    <path refid="library.gradle:_org.apache.tomcat.embed:tomcat-embed-core:8.5.31.classpath"/>
+    <path refid="library.gradle:_org.apache.tomcat.embed:tomcat-embed-el:8.5.31.classpath"/>
+    <path refid="library.gradle:_javax.validation:validation-api:2.0.1.final.classpath"/>
+    <path refid="library.gradle:_org.hibernate.common:hibernate-commons-annotations:5.0.1.final.classpath"/>
+    <path refid="library.gradle:_org.jboss.logging:jboss-logging:3.3.2.final.classpath"/>
+    <path refid="library.gradle:_com.fasterxml:classmate:1.3.4.classpath"/>
+    <path refid="library.gradle:_org.aspectj:aspectjweaver:1.8.13.classpath"/>
+    <path refid="library.gradle:_com.zaxxer:hikaricp:2.7.9.classpath"/>
+    <path refid="library.gradle:_org.hibernate.javax.persistence:hibernate-jpa-2.1-api:1.0.0.final.classpath"/>
+    <path refid="library.gradle:_org.javassist:javassist:3.22.0-ga.classpath"/>
+    <path refid="library.gradle:_antlr:antlr:2.7.7.classpath"/>
+    <path refid="library.gradle:_org.jboss:jandex:2.0.3.final.classpath"/>
+    <path refid="library.gradle:_dom4j:dom4j:1.6.1.classpath"/>
+    <path refid="library.gradle:_ch.qos.logback:logback-classic:1.2.3.classpath"/>
+    <path refid="library.gradle:_org.apache.logging.log4j:log4j-to-slf4j:2.10.0.classpath"/>
+    <path refid="library.gradle:_org.slf4j:jul-to-slf4j:1.7.25.classpath"/>
+    <path refid="library.gradle:_org.slf4j:slf4j-api:1.7.25.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-jcl:5.0.6.release.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.core:jackson-annotations:2.9.0.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.core:jackson-core:2.9.5.classpath"/>
+    <path refid="library.gradle:_ch.qos.logback:logback-core:1.2.3.classpath"/>
+    <path refid="library.gradle:_org.apache.logging.log4j:log4j-api:2.10.0.classpath"/>
+  </path>
+  
+  <path id="complete_main.runtime.module.classpath">
+    <pathelement location="${complete_main.output.dir}"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-web:2.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-data-jpa:2.0.2.release.classpath"/>
+    <path refid="library.gradle:_mysql:mysql-connector-java:5.1.46.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-json:2.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-aop:2.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-jdbc:2.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter:2.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-tomcat:2.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.hibernate.validator:hibernate-validator:6.0.9.final.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-webmvc:5.0.6.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-web:5.0.6.release.classpath"/>
+    <path refid="library.gradle:_org.hibernate:hibernate-core:5.2.17.final.classpath"/>
+    <path refid="library.gradle:_javax.transaction:javax.transaction-api:1.2.classpath"/>
+    <path refid="library.gradle:_org.springframework.data:spring-data-jpa:2.0.7.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-aspects:5.0.6.release.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-autoconfigure:2.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot:2.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-logging:2.0.2.release.classpath"/>
+    <path refid="library.gradle:_javax.annotation:javax.annotation-api:1.3.2.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-context:5.0.6.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-aop:5.0.6.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-orm:5.0.6.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-jdbc:5.0.6.release.classpath"/>
+    <path refid="library.gradle:_org.springframework.data:spring-data-commons:2.0.7.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-tx:5.0.6.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-beans:5.0.6.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-expression:5.0.6.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-core:5.0.6.release.classpath"/>
+    <path refid="library.gradle:_org.yaml:snakeyaml:1.19.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.datatype:jackson-datatype-jdk8:2.9.5.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.9.5.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.module:jackson-module-parameter-names:2.9.5.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.core:jackson-databind:2.9.5.classpath"/>
+    <path refid="library.gradle:_org.apache.tomcat.embed:tomcat-embed-websocket:8.5.31.classpath"/>
+    <path refid="library.gradle:_org.apache.tomcat.embed:tomcat-embed-core:8.5.31.classpath"/>
+    <path refid="library.gradle:_org.apache.tomcat.embed:tomcat-embed-el:8.5.31.classpath"/>
+    <path refid="library.gradle:_javax.validation:validation-api:2.0.1.final.classpath"/>
+    <path refid="library.gradle:_org.hibernate.common:hibernate-commons-annotations:5.0.1.final.classpath"/>
+    <path refid="library.gradle:_org.jboss.logging:jboss-logging:3.3.2.final.classpath"/>
+    <path refid="library.gradle:_com.fasterxml:classmate:1.3.4.classpath"/>
+    <path refid="library.gradle:_org.aspectj:aspectjweaver:1.8.13.classpath"/>
+    <path refid="library.gradle:_com.zaxxer:hikaricp:2.7.9.classpath"/>
+    <path refid="library.gradle:_org.hibernate.javax.persistence:hibernate-jpa-2.1-api:1.0.0.final.classpath"/>
+    <path refid="library.gradle:_org.javassist:javassist:3.22.0-ga.classpath"/>
+    <path refid="library.gradle:_antlr:antlr:2.7.7.classpath"/>
+    <path refid="library.gradle:_org.jboss:jandex:2.0.3.final.classpath"/>
+    <path refid="library.gradle:_dom4j:dom4j:1.6.1.classpath"/>
+    <path refid="library.gradle:_ch.qos.logback:logback-classic:1.2.3.classpath"/>
+    <path refid="library.gradle:_org.apache.logging.log4j:log4j-to-slf4j:2.10.0.classpath"/>
+    <path refid="library.gradle:_org.slf4j:jul-to-slf4j:1.7.25.classpath"/>
+    <path refid="library.gradle:_org.slf4j:slf4j-api:1.7.25.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-jcl:5.0.6.release.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.core:jackson-annotations:2.9.0.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.core:jackson-core:2.9.5.classpath"/>
+    <path refid="library.gradle:_ch.qos.logback:logback-core:1.2.3.classpath"/>
+    <path refid="library.gradle:_org.apache.logging.log4j:log4j-api:2.10.0.classpath"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.complete_main">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.complete_main">
+    <patternset refid="excluded.from.module.complete_main"/>
+  </patternset>
+  
+  <path id="complete_main.module.sourcepath">
+    <dirset dir="${module.complete_main.basedir}/src/main">
+      <include name="java"/>
+      <include name="resources"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.complete_main" depends="compile.module.complete_main.production,compile.module.complete_main.tests" description="Compile module complete_main"/>
+  
+  <target name="compile.module.complete_main.production" depends="register.custom.compilers" description="Compile module complete_main; production classes">
+    <mkdir dir="${complete_main.output.dir}"/>
+    <javac2 destdir="${complete_main.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.complete_main}/javac">
+      <compilerarg line="${compiler.args.complete_main}"/>
+      <bootclasspath refid="complete_main.module.bootclasspath"/>
+      <classpath refid="complete_main.module.production.classpath"/>
+      <src refid="complete_main.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.complete_main"/>
+    </javac2>
+    
+    <copy todir="${complete_main.output.dir}">
+      <fileset dir="${module.complete_main.basedir}/src/main/java">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+      <fileset dir="${module.complete_main.basedir}/src/main/resources">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.complete_main.tests" depends="register.custom.compilers,compile.module.complete_main.production" description="compile module complete_main; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.complete_main" description="cleanup module">
+    <delete dir="${complete_main.output.dir}"/>
+    <delete dir="${complete_main.testoutput.dir}"/>
+  </target>
+  
+  
+  <!-- Module complete_test -->
+  
+  <dirname property="module.complete_test.basedir" file="${ant.file}"/>
+  
+  
+  <property name="module.jdk.home.complete_test" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.complete_test" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.complete_test" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.complete_test" value="-encoding UTF-8 -source 8 -target 8 ${compiler.args}"/>
+  
+  <property name="complete_test.output.dir" value="undefined"/>
+  <property name="complete_test.testoutput.dir" value="${module.complete_test.basedir}/out/test/classes"/>
+  
+  <path id="complete_test.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="complete_test.module.production.classpath">
+    <path refid="${module.jdk.classpath.complete_test}"/>
+    <pathelement location="${complete_main.output.dir}"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-web:2.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-data-jpa:2.0.2.release.classpath"/>
+    <path refid="library.gradle:_mysql:mysql-connector-java:5.1.46.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-test:2.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-json:2.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-aop:2.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-jdbc:2.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter:2.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-tomcat:2.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.hibernate.validator:hibernate-validator:6.0.9.final.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-webmvc:5.0.6.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-web:5.0.6.release.classpath"/>
+    <path refid="library.gradle:_org.hibernate:hibernate-core:5.2.17.final.classpath"/>
+    <path refid="library.gradle:_javax.transaction:javax.transaction-api:1.2.classpath"/>
+    <path refid="library.gradle:_org.springframework.data:spring-data-jpa:2.0.7.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-aspects:5.0.6.release.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-test-autoconfigure:2.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-test:2.0.2.release.classpath"/>
+    <path refid="library.gradle:_com.jayway.jsonpath:json-path:2.4.0.classpath"/>
+    <path refid="library.gradle:_junit:junit:4.12.classpath"/>
+    <path refid="library.gradle:_org.assertj:assertj-core:3.9.1.classpath"/>
+    <path refid="library.gradle:_org.mockito:mockito-core:2.15.0.classpath"/>
+    <path refid="library.gradle:_org.hamcrest:hamcrest-library:1.3.classpath"/>
+    <path refid="library.gradle:_org.hamcrest:hamcrest-core:1.3.classpath"/>
+    <path refid="library.gradle:_org.skyscreamer:jsonassert:1.5.0.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-test:5.0.6.release.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-autoconfigure:2.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot:2.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-context:5.0.6.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-expression:5.0.6.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-orm:5.0.6.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-jdbc:5.0.6.release.classpath"/>
+    <path refid="library.gradle:_org.springframework.data:spring-data-commons:2.0.7.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-tx:5.0.6.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-aop:5.0.6.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-beans:5.0.6.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-core:5.0.6.release.classpath"/>
+    <path refid="library.gradle:_org.xmlunit:xmlunit-core:2.5.1.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-logging:2.0.2.release.classpath"/>
+    <path refid="library.gradle:_javax.annotation:javax.annotation-api:1.3.2.classpath"/>
+    <path refid="library.gradle:_org.yaml:snakeyaml:1.19.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.datatype:jackson-datatype-jdk8:2.9.5.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.9.5.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.module:jackson-module-parameter-names:2.9.5.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.core:jackson-databind:2.9.5.classpath"/>
+    <path refid="library.gradle:_org.apache.tomcat.embed:tomcat-embed-websocket:8.5.31.classpath"/>
+    <path refid="library.gradle:_org.apache.tomcat.embed:tomcat-embed-core:8.5.31.classpath"/>
+    <path refid="library.gradle:_org.apache.tomcat.embed:tomcat-embed-el:8.5.31.classpath"/>
+    <path refid="library.gradle:_javax.validation:validation-api:2.0.1.final.classpath"/>
+    <path refid="library.gradle:_org.hibernate.common:hibernate-commons-annotations:5.0.1.final.classpath"/>
+    <path refid="library.gradle:_org.jboss.logging:jboss-logging:3.3.2.final.classpath"/>
+    <path refid="library.gradle:_com.fasterxml:classmate:1.3.4.classpath"/>
+    <path refid="library.gradle:_org.aspectj:aspectjweaver:1.8.13.classpath"/>
+    <path refid="library.gradle:_com.zaxxer:hikaricp:2.7.9.classpath"/>
+    <path refid="library.gradle:_org.hibernate.javax.persistence:hibernate-jpa-2.1-api:1.0.0.final.classpath"/>
+    <path refid="library.gradle:_org.javassist:javassist:3.22.0-ga.classpath"/>
+    <path refid="library.gradle:_antlr:antlr:2.7.7.classpath"/>
+    <path refid="library.gradle:_org.jboss:jandex:2.0.3.final.classpath"/>
+    <path refid="library.gradle:_dom4j:dom4j:1.6.1.classpath"/>
+    <path refid="library.gradle:_ch.qos.logback:logback-classic:1.2.3.classpath"/>
+    <path refid="library.gradle:_org.apache.logging.log4j:log4j-to-slf4j:2.10.0.classpath"/>
+    <path refid="library.gradle:_org.slf4j:jul-to-slf4j:1.7.25.classpath"/>
+    <path refid="library.gradle:_org.slf4j:slf4j-api:1.7.25.classpath"/>
+    <path refid="library.gradle:_net.minidev:json-smart:2.3.classpath"/>
+    <path refid="library.gradle:_net.bytebuddy:byte-buddy:1.7.11.classpath"/>
+    <path refid="library.gradle:_net.bytebuddy:byte-buddy-agent:1.7.11.classpath"/>
+    <path refid="library.gradle:_org.objenesis:objenesis:2.6.classpath"/>
+    <path refid="library.gradle:_com.vaadin.external.google:android-json:0.0.20131108.vaadin1.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-jcl:5.0.6.release.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.core:jackson-annotations:2.9.0.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.core:jackson-core:2.9.5.classpath"/>
+    <path refid="library.gradle:_net.minidev:accessors-smart:1.2.classpath"/>
+    <path refid="library.gradle:_ch.qos.logback:logback-core:1.2.3.classpath"/>
+    <path refid="library.gradle:_org.apache.logging.log4j:log4j-api:2.10.0.classpath"/>
+    <path refid="library.gradle:_org.ow2.asm:asm:5.0.4.classpath"/>
+  </path>
+  
+  <path id="complete_test.runtime.production.module.classpath">
+    <path refid="complete_main.runtime.production.module.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-web:2.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-data-jpa:2.0.2.release.classpath"/>
+    <path refid="library.gradle:_mysql:mysql-connector-java:5.1.46.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-test:2.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-json:2.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-aop:2.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-jdbc:2.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter:2.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-tomcat:2.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.hibernate.validator:hibernate-validator:6.0.9.final.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-webmvc:5.0.6.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-web:5.0.6.release.classpath"/>
+    <path refid="library.gradle:_org.hibernate:hibernate-core:5.2.17.final.classpath"/>
+    <path refid="library.gradle:_javax.transaction:javax.transaction-api:1.2.classpath"/>
+    <path refid="library.gradle:_org.springframework.data:spring-data-jpa:2.0.7.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-aspects:5.0.6.release.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-test-autoconfigure:2.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-test:2.0.2.release.classpath"/>
+    <path refid="library.gradle:_com.jayway.jsonpath:json-path:2.4.0.classpath"/>
+    <path refid="library.gradle:_junit:junit:4.12.classpath"/>
+    <path refid="library.gradle:_org.assertj:assertj-core:3.9.1.classpath"/>
+    <path refid="library.gradle:_org.mockito:mockito-core:2.15.0.classpath"/>
+    <path refid="library.gradle:_org.hamcrest:hamcrest-library:1.3.classpath"/>
+    <path refid="library.gradle:_org.hamcrest:hamcrest-core:1.3.classpath"/>
+    <path refid="library.gradle:_org.skyscreamer:jsonassert:1.5.0.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-test:5.0.6.release.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-autoconfigure:2.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot:2.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-context:5.0.6.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-expression:5.0.6.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-orm:5.0.6.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-jdbc:5.0.6.release.classpath"/>
+    <path refid="library.gradle:_org.springframework.data:spring-data-commons:2.0.7.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-tx:5.0.6.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-aop:5.0.6.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-beans:5.0.6.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-core:5.0.6.release.classpath"/>
+    <path refid="library.gradle:_org.xmlunit:xmlunit-core:2.5.1.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-logging:2.0.2.release.classpath"/>
+    <path refid="library.gradle:_javax.annotation:javax.annotation-api:1.3.2.classpath"/>
+    <path refid="library.gradle:_org.yaml:snakeyaml:1.19.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.datatype:jackson-datatype-jdk8:2.9.5.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.9.5.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.module:jackson-module-parameter-names:2.9.5.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.core:jackson-databind:2.9.5.classpath"/>
+    <path refid="library.gradle:_org.apache.tomcat.embed:tomcat-embed-websocket:8.5.31.classpath"/>
+    <path refid="library.gradle:_org.apache.tomcat.embed:tomcat-embed-core:8.5.31.classpath"/>
+    <path refid="library.gradle:_org.apache.tomcat.embed:tomcat-embed-el:8.5.31.classpath"/>
+    <path refid="library.gradle:_javax.validation:validation-api:2.0.1.final.classpath"/>
+    <path refid="library.gradle:_org.hibernate.common:hibernate-commons-annotations:5.0.1.final.classpath"/>
+    <path refid="library.gradle:_org.jboss.logging:jboss-logging:3.3.2.final.classpath"/>
+    <path refid="library.gradle:_com.fasterxml:classmate:1.3.4.classpath"/>
+    <path refid="library.gradle:_org.aspectj:aspectjweaver:1.8.13.classpath"/>
+    <path refid="library.gradle:_com.zaxxer:hikaricp:2.7.9.classpath"/>
+    <path refid="library.gradle:_org.hibernate.javax.persistence:hibernate-jpa-2.1-api:1.0.0.final.classpath"/>
+    <path refid="library.gradle:_org.javassist:javassist:3.22.0-ga.classpath"/>
+    <path refid="library.gradle:_antlr:antlr:2.7.7.classpath"/>
+    <path refid="library.gradle:_org.jboss:jandex:2.0.3.final.classpath"/>
+    <path refid="library.gradle:_dom4j:dom4j:1.6.1.classpath"/>
+    <path refid="library.gradle:_ch.qos.logback:logback-classic:1.2.3.classpath"/>
+    <path refid="library.gradle:_org.apache.logging.log4j:log4j-to-slf4j:2.10.0.classpath"/>
+    <path refid="library.gradle:_org.slf4j:jul-to-slf4j:1.7.25.classpath"/>
+    <path refid="library.gradle:_org.slf4j:slf4j-api:1.7.25.classpath"/>
+    <path refid="library.gradle:_net.minidev:json-smart:2.3.classpath"/>
+    <path refid="library.gradle:_net.bytebuddy:byte-buddy:1.7.11.classpath"/>
+    <path refid="library.gradle:_net.bytebuddy:byte-buddy-agent:1.7.11.classpath"/>
+    <path refid="library.gradle:_org.objenesis:objenesis:2.6.classpath"/>
+    <path refid="library.gradle:_com.vaadin.external.google:android-json:0.0.20131108.vaadin1.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-jcl:5.0.6.release.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.core:jackson-annotations:2.9.0.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.core:jackson-core:2.9.5.classpath"/>
+    <path refid="library.gradle:_net.minidev:accessors-smart:1.2.classpath"/>
+    <path refid="library.gradle:_ch.qos.logback:logback-core:1.2.3.classpath"/>
+    <path refid="library.gradle:_org.apache.logging.log4j:log4j-api:2.10.0.classpath"/>
+    <path refid="library.gradle:_org.ow2.asm:asm:5.0.4.classpath"/>
+  </path>
+  
+  <path id="complete_test.module.classpath">
+    <path refid="${module.jdk.classpath.complete_test}"/>
+    <pathelement location="${complete_main.output.dir}"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-web:2.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-data-jpa:2.0.2.release.classpath"/>
+    <path refid="library.gradle:_mysql:mysql-connector-java:5.1.46.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-test:2.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-json:2.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-aop:2.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-jdbc:2.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter:2.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-tomcat:2.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.hibernate.validator:hibernate-validator:6.0.9.final.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-webmvc:5.0.6.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-web:5.0.6.release.classpath"/>
+    <path refid="library.gradle:_org.hibernate:hibernate-core:5.2.17.final.classpath"/>
+    <path refid="library.gradle:_javax.transaction:javax.transaction-api:1.2.classpath"/>
+    <path refid="library.gradle:_org.springframework.data:spring-data-jpa:2.0.7.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-aspects:5.0.6.release.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-test-autoconfigure:2.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-test:2.0.2.release.classpath"/>
+    <path refid="library.gradle:_com.jayway.jsonpath:json-path:2.4.0.classpath"/>
+    <path refid="library.gradle:_junit:junit:4.12.classpath"/>
+    <path refid="library.gradle:_org.assertj:assertj-core:3.9.1.classpath"/>
+    <path refid="library.gradle:_org.mockito:mockito-core:2.15.0.classpath"/>
+    <path refid="library.gradle:_org.hamcrest:hamcrest-library:1.3.classpath"/>
+    <path refid="library.gradle:_org.hamcrest:hamcrest-core:1.3.classpath"/>
+    <path refid="library.gradle:_org.skyscreamer:jsonassert:1.5.0.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-test:5.0.6.release.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-autoconfigure:2.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot:2.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-context:5.0.6.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-expression:5.0.6.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-orm:5.0.6.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-jdbc:5.0.6.release.classpath"/>
+    <path refid="library.gradle:_org.springframework.data:spring-data-commons:2.0.7.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-tx:5.0.6.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-aop:5.0.6.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-beans:5.0.6.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-core:5.0.6.release.classpath"/>
+    <path refid="library.gradle:_org.xmlunit:xmlunit-core:2.5.1.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-logging:2.0.2.release.classpath"/>
+    <path refid="library.gradle:_javax.annotation:javax.annotation-api:1.3.2.classpath"/>
+    <path refid="library.gradle:_org.yaml:snakeyaml:1.19.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.datatype:jackson-datatype-jdk8:2.9.5.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.9.5.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.module:jackson-module-parameter-names:2.9.5.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.core:jackson-databind:2.9.5.classpath"/>
+    <path refid="library.gradle:_org.apache.tomcat.embed:tomcat-embed-websocket:8.5.31.classpath"/>
+    <path refid="library.gradle:_org.apache.tomcat.embed:tomcat-embed-core:8.5.31.classpath"/>
+    <path refid="library.gradle:_org.apache.tomcat.embed:tomcat-embed-el:8.5.31.classpath"/>
+    <path refid="library.gradle:_javax.validation:validation-api:2.0.1.final.classpath"/>
+    <path refid="library.gradle:_org.hibernate.common:hibernate-commons-annotations:5.0.1.final.classpath"/>
+    <path refid="library.gradle:_org.jboss.logging:jboss-logging:3.3.2.final.classpath"/>
+    <path refid="library.gradle:_com.fasterxml:classmate:1.3.4.classpath"/>
+    <path refid="library.gradle:_org.aspectj:aspectjweaver:1.8.13.classpath"/>
+    <path refid="library.gradle:_com.zaxxer:hikaricp:2.7.9.classpath"/>
+    <path refid="library.gradle:_org.hibernate.javax.persistence:hibernate-jpa-2.1-api:1.0.0.final.classpath"/>
+    <path refid="library.gradle:_org.javassist:javassist:3.22.0-ga.classpath"/>
+    <path refid="library.gradle:_antlr:antlr:2.7.7.classpath"/>
+    <path refid="library.gradle:_org.jboss:jandex:2.0.3.final.classpath"/>
+    <path refid="library.gradle:_dom4j:dom4j:1.6.1.classpath"/>
+    <path refid="library.gradle:_ch.qos.logback:logback-classic:1.2.3.classpath"/>
+    <path refid="library.gradle:_org.apache.logging.log4j:log4j-to-slf4j:2.10.0.classpath"/>
+    <path refid="library.gradle:_org.slf4j:jul-to-slf4j:1.7.25.classpath"/>
+    <path refid="library.gradle:_org.slf4j:slf4j-api:1.7.25.classpath"/>
+    <path refid="library.gradle:_net.minidev:json-smart:2.3.classpath"/>
+    <path refid="library.gradle:_net.bytebuddy:byte-buddy:1.7.11.classpath"/>
+    <path refid="library.gradle:_net.bytebuddy:byte-buddy-agent:1.7.11.classpath"/>
+    <path refid="library.gradle:_org.objenesis:objenesis:2.6.classpath"/>
+    <path refid="library.gradle:_com.vaadin.external.google:android-json:0.0.20131108.vaadin1.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-jcl:5.0.6.release.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.core:jackson-annotations:2.9.0.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.core:jackson-core:2.9.5.classpath"/>
+    <path refid="library.gradle:_net.minidev:accessors-smart:1.2.classpath"/>
+    <path refid="library.gradle:_ch.qos.logback:logback-core:1.2.3.classpath"/>
+    <path refid="library.gradle:_org.apache.logging.log4j:log4j-api:2.10.0.classpath"/>
+    <path refid="library.gradle:_org.ow2.asm:asm:5.0.4.classpath"/>
+  </path>
+  
+  <path id="complete_test.runtime.module.classpath">
+    <pathelement location="${complete_test.testoutput.dir}"/>
+    <path refid="complete_main.runtime.module.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-web:2.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-data-jpa:2.0.2.release.classpath"/>
+    <path refid="library.gradle:_mysql:mysql-connector-java:5.1.46.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-test:2.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-json:2.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-aop:2.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-jdbc:2.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter:2.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-tomcat:2.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.hibernate.validator:hibernate-validator:6.0.9.final.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-webmvc:5.0.6.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-web:5.0.6.release.classpath"/>
+    <path refid="library.gradle:_org.hibernate:hibernate-core:5.2.17.final.classpath"/>
+    <path refid="library.gradle:_javax.transaction:javax.transaction-api:1.2.classpath"/>
+    <path refid="library.gradle:_org.springframework.data:spring-data-jpa:2.0.7.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-aspects:5.0.6.release.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-test-autoconfigure:2.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-test:2.0.2.release.classpath"/>
+    <path refid="library.gradle:_com.jayway.jsonpath:json-path:2.4.0.classpath"/>
+    <path refid="library.gradle:_junit:junit:4.12.classpath"/>
+    <path refid="library.gradle:_org.assertj:assertj-core:3.9.1.classpath"/>
+    <path refid="library.gradle:_org.mockito:mockito-core:2.15.0.classpath"/>
+    <path refid="library.gradle:_org.hamcrest:hamcrest-library:1.3.classpath"/>
+    <path refid="library.gradle:_org.hamcrest:hamcrest-core:1.3.classpath"/>
+    <path refid="library.gradle:_org.skyscreamer:jsonassert:1.5.0.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-test:5.0.6.release.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-autoconfigure:2.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot:2.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-context:5.0.6.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-expression:5.0.6.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-orm:5.0.6.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-jdbc:5.0.6.release.classpath"/>
+    <path refid="library.gradle:_org.springframework.data:spring-data-commons:2.0.7.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-tx:5.0.6.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-aop:5.0.6.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-beans:5.0.6.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-core:5.0.6.release.classpath"/>
+    <path refid="library.gradle:_org.xmlunit:xmlunit-core:2.5.1.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-logging:2.0.2.release.classpath"/>
+    <path refid="library.gradle:_javax.annotation:javax.annotation-api:1.3.2.classpath"/>
+    <path refid="library.gradle:_org.yaml:snakeyaml:1.19.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.datatype:jackson-datatype-jdk8:2.9.5.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.9.5.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.module:jackson-module-parameter-names:2.9.5.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.core:jackson-databind:2.9.5.classpath"/>
+    <path refid="library.gradle:_org.apache.tomcat.embed:tomcat-embed-websocket:8.5.31.classpath"/>
+    <path refid="library.gradle:_org.apache.tomcat.embed:tomcat-embed-core:8.5.31.classpath"/>
+    <path refid="library.gradle:_org.apache.tomcat.embed:tomcat-embed-el:8.5.31.classpath"/>
+    <path refid="library.gradle:_javax.validation:validation-api:2.0.1.final.classpath"/>
+    <path refid="library.gradle:_org.hibernate.common:hibernate-commons-annotations:5.0.1.final.classpath"/>
+    <path refid="library.gradle:_org.jboss.logging:jboss-logging:3.3.2.final.classpath"/>
+    <path refid="library.gradle:_com.fasterxml:classmate:1.3.4.classpath"/>
+    <path refid="library.gradle:_org.aspectj:aspectjweaver:1.8.13.classpath"/>
+    <path refid="library.gradle:_com.zaxxer:hikaricp:2.7.9.classpath"/>
+    <path refid="library.gradle:_org.hibernate.javax.persistence:hibernate-jpa-2.1-api:1.0.0.final.classpath"/>
+    <path refid="library.gradle:_org.javassist:javassist:3.22.0-ga.classpath"/>
+    <path refid="library.gradle:_antlr:antlr:2.7.7.classpath"/>
+    <path refid="library.gradle:_org.jboss:jandex:2.0.3.final.classpath"/>
+    <path refid="library.gradle:_dom4j:dom4j:1.6.1.classpath"/>
+    <path refid="library.gradle:_ch.qos.logback:logback-classic:1.2.3.classpath"/>
+    <path refid="library.gradle:_org.apache.logging.log4j:log4j-to-slf4j:2.10.0.classpath"/>
+    <path refid="library.gradle:_org.slf4j:jul-to-slf4j:1.7.25.classpath"/>
+    <path refid="library.gradle:_org.slf4j:slf4j-api:1.7.25.classpath"/>
+    <path refid="library.gradle:_net.minidev:json-smart:2.3.classpath"/>
+    <path refid="library.gradle:_net.bytebuddy:byte-buddy:1.7.11.classpath"/>
+    <path refid="library.gradle:_net.bytebuddy:byte-buddy-agent:1.7.11.classpath"/>
+    <path refid="library.gradle:_org.objenesis:objenesis:2.6.classpath"/>
+    <path refid="library.gradle:_com.vaadin.external.google:android-json:0.0.20131108.vaadin1.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-jcl:5.0.6.release.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.core:jackson-annotations:2.9.0.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.core:jackson-core:2.9.5.classpath"/>
+    <path refid="library.gradle:_net.minidev:accessors-smart:1.2.classpath"/>
+    <path refid="library.gradle:_ch.qos.logback:logback-core:1.2.3.classpath"/>
+    <path refid="library.gradle:_org.apache.logging.log4j:log4j-api:2.10.0.classpath"/>
+    <path refid="library.gradle:_org.ow2.asm:asm:5.0.4.classpath"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.complete_test">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.complete_test">
+    <patternset refid="excluded.from.module.complete_test"/>
+  </patternset>
+  
+  
+  <target name="compile.module.complete_test" depends="compile.module.complete_test.production,compile.module.complete_test.tests" description="Compile module complete_test"/>
+  
+  <target name="compile.module.complete_test.production" depends="register.custom.compilers,compile.module.complete_main" description="Compile module complete_test; production classes"/>
+  
+  <target name="compile.module.complete_test.tests" depends="register.custom.compilers,compile.module.complete_test.production" description="compile module complete_test; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.complete_test" description="cleanup module">
+    <delete dir="${complete_test.output.dir}"/>
+    <delete dir="${complete_test.testoutput.dir}"/>
+  </target>
+  
+  <target name="init" description="Build initialization">
+    <!-- Perform any build initialization in this target -->
+  </target>
+  
+  <target name="clean" depends="clean.module.complete, clean.module.complete_main, clean.module.complete_test" description="cleanup all"/>
+  
+  <target name="build.modules" depends="init, clean, compile.module.complete, compile.module.complete_main, compile.module.complete_test" description="build all modules"/>
+  
+  <target name="init.artifacts">
+    <property name="artifacts.temp.dir" value="${basedir}/__artifacts_temp"/>
+    <property name="artifact.output.complete:jar" value="${basedir}/out/artifacts/complete_jar"/>
+    <mkdir dir="${artifacts.temp.dir}"/>
+    <property name="temp.jar.path.complete.jar" value="${artifacts.temp.dir}/complete.jar"/>
+  </target>
+  
+  <target name="artifact.complete:jar" depends="init.artifacts, compile.module.complete_main" description="Build &#39;complete:jar&#39; artifact">
+    <property name="artifact.temp.output.complete:jar" value="${artifacts.temp.dir}/complete_jar"/>
+    <mkdir dir="${artifact.temp.output.complete:jar}"/>
+    <jar destfile="${temp.jar.path.complete.jar}" duplicate="preserve" filesetmanifest="mergewithoutmain">
+      <zipfileset dir="${complete_main.output.dir}"/>
+      <zipfileset src="${basedir}/../../.gradle/caches/modules-2/files-2.1/org.ow2.asm/asm/5.0.4/da08b8cce7bbf903602a25a3a163ae252435795/asm-5.0.4.jar"/>
+      <zipfileset src="${basedir}/../../.gradle/caches/modules-2/files-2.1/javax.transaction/javax.transaction-api/1.2/d81aff979d603edd90dcd8db2abc1f4ce6479e3e/javax.transaction-api-1.2.jar"/>
+      <zipfileset src="${basedir}/../../.gradle/caches/modules-2/files-2.1/net.bytebuddy/byte-buddy-agent/1.7.11/b425a8933ca07edd03c6dbc8bc3b595fba9780de/byte-buddy-agent-1.7.11.jar"/>
+      <zipfileset src="${basedir}/../../.gradle/caches/modules-2/files-2.1/org.hamcrest/hamcrest-library/1.3/4785a3c21320980282f9f33d0d1264a69040538f/hamcrest-library-1.3.jar"/>
+      <zipfileset src="${basedir}/../../.gradle/caches/modules-2/files-2.1/com.jayway.jsonpath/json-path/2.4.0/765a4401ceb2dc8d40553c2075eb80a8fa35c2ae/json-path-2.4.0.jar"/>
+      <zipfileset src="${basedir}/../../.gradle/caches/modules-2/files-2.1/org.hibernate.validator/hibernate-validator/6.0.9.Final/b149e4cce82379f11f6129eb3187ca8ae5404005/hibernate-validator-6.0.9.Final.jar"/>
+      <zipfileset src="${basedir}/../../.gradle/caches/modules-2/files-2.1/com.fasterxml/classmate/1.3.4/3d5f48f10bbe4eb7bd862f10c0583be2e0053c6/classmate-1.3.4.jar"/>
+      <zipfileset src="${basedir}/../../.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-starter-tomcat/2.0.2.RELEASE/cedbfb18762e1c220007c768bfc5b773f5b30f8a/spring-boot-starter-tomcat-2.0.2.RELEASE.jar"/>
+      <zipfileset src="${basedir}/../../.gradle/caches/modules-2/files-2.1/org.springframework/spring-orm/5.0.6.RELEASE/7a08073597b79dfcd4db1cffa924f2b991a14a20/spring-orm-5.0.6.RELEASE.jar"/>
+      <zipfileset src="${basedir}/../../.gradle/caches/modules-2/files-2.1/org.skyscreamer/jsonassert/1.5.0/6c9d5fe2f59da598d9aefc1cfc6528ff3cf32df3/jsonassert-1.5.0.jar"/>
+      <zipfileset src="${basedir}/../../.gradle/caches/modules-2/files-2.1/dom4j/dom4j/1.6.1/5d3ccc056b6f056dbf0dddfdf43894b9065a8f94/dom4j-1.6.1.jar"/>
+      <zipfileset src="${basedir}/../../.gradle/caches/modules-2/files-2.1/org.hibernate.common/hibernate-commons-annotations/5.0.1.Final/71e1cff3fcb20d3b3af4f3363c3ddb24d33c6879/hibernate-commons-annotations-5.0.1.Final.jar"/>
+      <zipfileset src="${basedir}/../../.gradle/caches/modules-2/files-2.1/org.springframework/spring-web/5.0.6.RELEASE/89e89de3025165998118590613aedc6df8d64af6/spring-web-5.0.6.RELEASE.jar"/>
+      <zipfileset src="${basedir}/../../.gradle/caches/modules-2/files-2.1/org.apache.tomcat.embed/tomcat-embed-websocket/8.5.31/6564e716b89de5eaa0dd234ae7989576503ddf3/tomcat-embed-websocket-8.5.31.jar"/>
+      <zipfileset src="${basedir}/../../.gradle/caches/modules-2/files-2.1/ch.qos.logback/logback-core/1.2.3/864344400c3d4d92dfeb0a305dc87d953677c03c/logback-core-1.2.3.jar"/>
+      <zipfileset src="${basedir}/../../.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-starter-web/2.0.2.RELEASE/b6ef0cf4d0a7c6c7e93ff524b84cd1d8f87f67d9/spring-boot-starter-web-2.0.2.RELEASE.jar"/>
+      <zipfileset src="${basedir}/../../.gradle/caches/modules-2/files-2.1/org.springframework.data/spring-data-commons/2.0.7.RELEASE/7faa0fb2ffa50a5c50ad9f10118095ae24d5c6e1/spring-data-commons-2.0.7.RELEASE.jar"/>
+      <zipfileset src="${basedir}/../../.gradle/caches/modules-2/files-2.1/com.vaadin.external.google/android-json/0.0.20131108.vaadin1/fa26d351fe62a6a17f5cda1287c1c6110dec413f/android-json-0.0.20131108.vaadin1.jar"/>
+      <zipfileset src="${basedir}/../../.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-starter-json/2.0.2.RELEASE/5edda979838ced5314b8f58a958fe9d6b4b3badd/spring-boot-starter-json-2.0.2.RELEASE.jar"/>
+      <zipfileset src="${basedir}/../../.gradle/caches/modules-2/files-2.1/org.springframework/spring-webmvc/5.0.6.RELEASE/1361c5d1cf46665ee01de5dc1ca447c3be174c19/spring-webmvc-5.0.6.RELEASE.jar"/>
+      <zipfileset src="${basedir}/../../.gradle/caches/modules-2/files-2.1/ch.qos.logback/logback-classic/1.2.3/7c4f3c474fb2c041d8028740440937705ebb473a/logback-classic-1.2.3.jar"/>
+      <zipfileset src="${basedir}/../../.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-starter/2.0.2.RELEASE/1cda94f0dfcf2b065191782a54b84d2abf96391/spring-boot-starter-2.0.2.RELEASE.jar"/>
+      <zipfileset src="${basedir}/../../.gradle/caches/modules-2/files-2.1/org.springframework/spring-expression/5.0.6.RELEASE/dec57ae5e6f0dfd4c6cfc199aa13ed268c3e1a65/spring-expression-5.0.6.RELEASE.jar"/>
+      <zipfileset src="${basedir}/../../.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-core/2.9.5/a22ac51016944b06fd9ffbc9541c6e7ce5eea117/jackson-core-2.9.5.jar"/>
+      <zipfileset src="${basedir}/../../.gradle/caches/modules-2/files-2.1/org.xmlunit/xmlunit-core/2.5.1/4ffdb346572a7356f7521cd3119ce5287d2e339d/xmlunit-core-2.5.1.jar"/>
+      <zipfileset src="${basedir}/../../.gradle/caches/modules-2/files-2.1/org.slf4j/jul-to-slf4j/1.7.25/af5364cd6679bfffb114f0dec8a157aaa283b76/jul-to-slf4j-1.7.25.jar"/>
+      <zipfileset src="${basedir}/../../.gradle/caches/modules-2/files-2.1/org.springframework.data/spring-data-jpa/2.0.7.RELEASE/9f201f3d3435a9e5422e0edcff3475c46215ffb/spring-data-jpa-2.0.7.RELEASE.jar"/>
+      <zipfileset src="${basedir}/../../.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-starter-aop/2.0.2.RELEASE/b0b0c7dcfdffaef1b04886c0279772905bc7e9d2/spring-boot-starter-aop-2.0.2.RELEASE.jar"/>
+      <zipfileset src="${basedir}/../../.gradle/caches/modules-2/files-2.1/org.hibernate.javax.persistence/hibernate-jpa-2.1-api/1.0.0.Final/5e731d961297e5a07290bfaf3db1fbc8bbbf405a/hibernate-jpa-2.1-api-1.0.0.Final.jar"/>
+      <zipfileset src="${basedir}/../../.gradle/caches/modules-2/files-2.1/org.jboss.logging/jboss-logging/3.3.2.Final/3789d00e859632e6c6206adc0c71625559e6e3b0/jboss-logging-3.3.2.Final.jar"/>
+      <zipfileset src="${basedir}/../../.gradle/caches/modules-2/files-2.1/org.springframework/spring-tx/5.0.6.RELEASE/1b6ffc44f2d59507a0fce1084fcc21788b13904/spring-tx-5.0.6.RELEASE.jar"/>
+      <zipfileset src="${basedir}/../../.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-starter-data-jpa/2.0.2.RELEASE/a277d15c247684aaef38852a2e71b8b1ef7357e6/spring-boot-starter-data-jpa-2.0.2.RELEASE.jar"/>
+      <zipfileset src="${basedir}/../../.gradle/caches/modules-2/files-2.1/junit/junit/4.12/2973d150c0dc1fefe998f834810d68f278ea58ec/junit-4.12.jar"/>
+      <zipfileset src="${basedir}/../../.gradle/caches/modules-2/files-2.1/org.mockito/mockito-core/2.15.0/b84bfbbc29cd22c9529409627af6ea2897f4fa85/mockito-core-2.15.0.jar"/>
+      <zipfileset src="${basedir}/../../.gradle/caches/modules-2/files-2.1/org.jboss/jandex/2.0.3.Final/bfc4d6257dbff7a33a357f0de116be6ff951d849/jandex-2.0.3.Final.jar"/>
+      <zipfileset src="${basedir}/../../.gradle/caches/modules-2/files-2.1/org.springframework/spring-core/5.0.6.RELEASE/984a52455b1be596b7f1a29f62d21d2f483eb764/spring-core-5.0.6.RELEASE.jar"/>
+      <zipfileset src="${basedir}/../../.gradle/caches/modules-2/files-2.1/org.springframework/spring-jcl/5.0.6.RELEASE/295ee4e8657e9c1fd327735c01d5fbce339cc44d/spring-jcl-5.0.6.RELEASE.jar"/>
+      <zipfileset src="${basedir}/../../.gradle/caches/modules-2/files-2.1/net.bytebuddy/byte-buddy/1.7.11/f02857a4e2c66ccbe7aaad6100a0a6c461bce9b3/byte-buddy-1.7.11.jar"/>
+      <zipfileset src="${basedir}/../../.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-annotations/2.9.0/7c10d545325e3a6e72e06381afe469fd40eb701/jackson-annotations-2.9.0.jar"/>
+      <zipfileset src="${basedir}/../../.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot/2.0.2.RELEASE/15012cf02e9f77938244e554f0598535fdd1cb38/spring-boot-2.0.2.RELEASE.jar"/>
+      <zipfileset src="${basedir}/../../.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.datatype/jackson-datatype-jdk8/2.9.5/23e37f085279ba316c0df923513b81609e1d1f6/jackson-datatype-jdk8-2.9.5.jar"/>
+      <zipfileset src="${basedir}/../../.gradle/caches/modules-2/files-2.1/javax.annotation/javax.annotation-api/1.3.2/934c04d3cfef185a8008e7bf34331b79730a9d43/javax.annotation-api-1.3.2.jar"/>
+      <zipfileset src="${basedir}/../../.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-databind/2.9.5/3490508379d065fe3fcb80042b62f630f7588606/jackson-databind-2.9.5.jar"/>
+      <zipfileset src="${basedir}/../../.gradle/caches/modules-2/files-2.1/org.apache.tomcat.embed/tomcat-embed-core/8.5.31/f5adf7ed8c34aa005b22b6a2dc7b6796e10e9c79/tomcat-embed-core-8.5.31.jar"/>
+      <zipfileset src="${basedir}/../../.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.datatype/jackson-datatype-jsr310/2.9.5/d1f0d11e816bc04e222a261106ca138801841c2d/jackson-datatype-jsr310-2.9.5.jar"/>
+      <zipfileset src="${basedir}/../../.gradle/caches/modules-2/files-2.1/org.assertj/assertj-core/3.9.1/c5ce126b15f28d56cd8f960c1a6a058b9c9aea87/assertj-core-3.9.1.jar"/>
+      <zipfileset src="${basedir}/../../.gradle/caches/modules-2/files-2.1/antlr/antlr/2.7.7/83cd2cd674a217ade95a4bb83a8a14f351f48bd0/antlr-2.7.7.jar"/>
+      <zipfileset src="${basedir}/../../.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.module/jackson-module-parameter-names/2.9.5/f824c60751ffb7bfc3a0d30dfe0e42317d8e67f5/jackson-module-parameter-names-2.9.5.jar"/>
+      <zipfileset src="${basedir}/../../.gradle/caches/modules-2/files-2.1/org.springframework/spring-test/5.0.6.RELEASE/dbc99b288774b2e07d94bc14fe38d556bc3ed34a/spring-test-5.0.6.RELEASE.jar"/>
+      <zipfileset src="${basedir}/../../.gradle/caches/modules-2/files-2.1/org.springframework/spring-beans/5.0.6.RELEASE/d609b83cd8a71650a70778cf8d02c9a05b9161fe/spring-beans-5.0.6.RELEASE.jar"/>
+      <zipfileset src="${basedir}/../../.gradle/caches/modules-2/files-2.1/org.springframework/spring-aop/5.0.6.RELEASE/74078df698992054c1c1a8f705763a6c7b4b914c/spring-aop-5.0.6.RELEASE.jar"/>
+      <zipfileset src="${basedir}/../../.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-starter-logging/2.0.2.RELEASE/b56d7d1931792d6e58dbd41f956912359ba85238/spring-boot-starter-logging-2.0.2.RELEASE.jar"/>
+      <zipfileset src="${basedir}/../../.gradle/caches/modules-2/files-2.1/org.yaml/snakeyaml/1.19/2d998d3d674b172a588e54ab619854d073f555b5/snakeyaml-1.19.jar"/>
+      <zipfileset src="${basedir}/../../.gradle/caches/modules-2/files-2.1/org.springframework/spring-context/5.0.6.RELEASE/8b73b742ef0ddce04f0f1068f305de240b00ce0d/spring-context-5.0.6.RELEASE.jar"/>
+      <zipfileset src="${basedir}/../../.gradle/caches/modules-2/files-2.1/org.springframework/spring-jdbc/5.0.6.RELEASE/7d4de1ee9b042774e09ceb88393e5a564e342729/spring-jdbc-5.0.6.RELEASE.jar"/>
+      <zipfileset src="${basedir}/../../.gradle/caches/modules-2/files-2.1/org.javassist/javassist/3.22.0-GA/3e83394258ae2089be7219b971ec21a8288528ad/javassist-3.22.0-GA.jar"/>
+      <zipfileset src="${basedir}/../../.gradle/caches/modules-2/files-2.1/net.minidev/accessors-smart/1.2/c592b500269bfde36096641b01238a8350f8aa31/accessors-smart-1.2.jar"/>
+      <zipfileset src="${basedir}/../../.gradle/caches/modules-2/files-2.1/org.apache.logging.log4j/log4j-to-slf4j/2.10.0/f7e631ccf49cfc0aefa4a2a728da7d374c05bd3c/log4j-to-slf4j-2.10.0.jar"/>
+      <zipfileset src="${basedir}/../../.gradle/caches/modules-2/files-2.1/com.zaxxer/HikariCP/2.7.9/a83113d2c091d0d0f853dad3217bd7df3beb6ae3/HikariCP-2.7.9.jar"/>
+      <zipfileset src="${basedir}/../../.gradle/caches/modules-2/files-2.1/org.hibernate/hibernate-core/5.2.17.Final/f2dc36470e7a2ffcf6106bb1625ecf5b54bb5f65/hibernate-core-5.2.17.Final.jar"/>
+      <zipfileset src="${basedir}/../../.gradle/caches/modules-2/files-2.1/org.objenesis/objenesis/2.6/639033469776fd37c08358c6b92a4761feb2af4b/objenesis-2.6.jar"/>
+      <zipfileset src="${basedir}/../../.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-starter-test/2.0.2.RELEASE/d9e090412f318586e0f277e24740b79b58ef190b/spring-boot-starter-test-2.0.2.RELEASE.jar"/>
+      <zipfileset src="${basedir}/../../.gradle/caches/modules-2/files-2.1/org.hamcrest/hamcrest-core/1.3/42a25dc3219429f0e5d060061f71acb49bf010a0/hamcrest-core-1.3.jar"/>
+      <zipfileset src="${basedir}/../../.gradle/caches/modules-2/files-2.1/org.slf4j/slf4j-api/1.7.25/da76ca59f6a57ee3102f8f9bd9cee742973efa8a/slf4j-api-1.7.25.jar"/>
+      <zipfileset src="${basedir}/../../.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-test/2.0.2.RELEASE/fc85812e6543312a3b0ea9fbbdfd4a51183380a3/spring-boot-test-2.0.2.RELEASE.jar"/>
+      <zipfileset src="${basedir}/../../.gradle/caches/modules-2/files-2.1/javax.validation/validation-api/2.0.1.Final/cb855558e6271b1b32e716d24cb85c7f583ce09e/validation-api-2.0.1.Final.jar"/>
+      <zipfileset src="${basedir}/../../.gradle/caches/modules-2/files-2.1/mysql/mysql-connector-java/5.1.46/9a3e63b387e376364211e96827bc27db8d7a92e9/mysql-connector-java-5.1.46.jar"/>
+      <zipfileset src="${basedir}/../../.gradle/caches/modules-2/files-2.1/net.minidev/json-smart/2.3/7396407491352ce4fa30de92efb158adb76b5b/json-smart-2.3.jar"/>
+      <zipfileset src="${basedir}/../../.gradle/caches/modules-2/files-2.1/org.apache.logging.log4j/log4j-api/2.10.0/fec5797a55b786184a537abd39c3fa1449d752d6/log4j-api-2.10.0.jar"/>
+      <zipfileset src="${basedir}/../../.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-starter-jdbc/2.0.2.RELEASE/f93c2459a06061f889b837d1c2503055df024778/spring-boot-starter-jdbc-2.0.2.RELEASE.jar"/>
+      <zipfileset src="${basedir}/../../.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-autoconfigure/2.0.2.RELEASE/f4b25e753e4955337a138d8b1550236b5efe5b3b/spring-boot-autoconfigure-2.0.2.RELEASE.jar"/>
+      <zipfileset src="${basedir}/../../.gradle/caches/modules-2/files-2.1/org.apache.tomcat.embed/tomcat-embed-el/8.5.31/3a536e1ac71b82627c3a7408eb38fa0704cb9034/tomcat-embed-el-8.5.31.jar"/>
+      <zipfileset src="${basedir}/../../.gradle/caches/modules-2/files-2.1/org.springframework/spring-aspects/5.0.6.RELEASE/45a7631a64eb82625067587b9796d4418d9e0568/spring-aspects-5.0.6.RELEASE.jar"/>
+      <zipfileset src="${basedir}/../../.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-test-autoconfigure/2.0.2.RELEASE/4993bdd96a4c02bc5b5703862d99ef4c563f25d0/spring-boot-test-autoconfigure-2.0.2.RELEASE.jar"/>
+      <zipfileset src="${basedir}/../../.gradle/caches/modules-2/files-2.1/org.aspectj/aspectjweaver/1.8.13/ad94df2a28d658a40dc27bbaff6a1ce5fbf04e9b/aspectjweaver-1.8.13.jar"/>
+    </jar>
+    <copy file="${temp.jar.path.complete.jar}" tofile="${artifact.temp.output.complete:jar}/complete.jar"/>
+  </target>
+  
+  <target name="build.all.artifacts" depends="artifact.complete:jar" description="Build all artifacts">
+    <mkdir dir="${artifact.output.complete:jar}"/>
+    <copy todir="${artifact.output.complete:jar}">
+      <fileset dir="${artifact.temp.output.complete:jar}"/>
+    </copy>
+    
+    <!-- Delete temporary files -->
+    <delete dir="${artifacts.temp.dir}"/>
+  </target>
+  
+  <target name="all" depends="build.modules, build.all.artifacts" description="build all"/>
+</project>

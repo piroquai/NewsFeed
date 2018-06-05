@@ -12,17 +12,19 @@ public class Feed {
 	final String language;
 	final String copyright;
 	final String pubDate;
+	final String media;
 
 	final List<FeedMessage> entries = new ArrayList<FeedMessage>();
 
 	public Feed(String title, String link, String description, String language,
-                String copyright, String pubDate) {
+                String copyright, String pubDate, String media) {
 		this.title = title;
 		this.link = link;
 		this.description = description;
 		this.language = language;
 		this.copyright = copyright;
 		this.pubDate = pubDate;
+		this.media =media;
 	}
 
 	public List<FeedMessage> getMessages() {

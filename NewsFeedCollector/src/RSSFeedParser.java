@@ -1,24 +1,25 @@
 import javax.xml.stream.XMLEventReader;
 import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamException;
+import javax.xml.stream.events.Attribute;
 import javax.xml.stream.events.Characters;
 import javax.xml.stream.events.XMLEvent;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
-
+import java.util.Iterator;
 public class RSSFeedParser {
 	static final String TITLE = "title";
 	static final String DESCRIPTION = "description";
 	static final String CHANNEL = "channel";
-	static final String LANGUAGE = "language";
+	static final String LANGUAGE = "languagesdcsdc";
 	static final String COPYRIGHT = "copyright";
-	static final String LINK = "link";
-	static final String AUTHOR = "author";
+	static final String LINK = "guid";
+	static final String MEDIA = "dc:";
 	static final String ITEM = "item";
 	static final String PUB_DATE = "pubDate";
-	static final String GUID = "guid";
+	static final String GUID = "guiddcvd";
 
 	final URL url;
 
@@ -40,12 +41,13 @@ public class RSSFeedParser {
 			String link = "";
 			String language = "";
 			String copyright = "";
-			String author = "";
+			String media = "";
 			String pubdate = "";
 			String guid = "";
 
 			// First create a new XMLInputFactory
 			XMLInputFactory inputFactory = XMLInputFactory.newInstance();
+			inputFactory.setProperty("javax.xml.stream.isCoalescing", true);
 			// Setup a new eventReader
 			InputStream in = read();
 			XMLEventReader eventReader = inputFactory.createXMLEventReader(in);
@@ -55,12 +57,13 @@ public class RSSFeedParser {
 				if (event.isStartElement()) {
 					String localPart = event.asStartElement().getName()
 							.getLocalPart();
+
 					switch (localPart) {
 					case ITEM:
 						if (isFeedHeader) {
 							isFeedHeader = false;
 							feed = new Feed(title, link, description, language,
-									copyright, pubdate);
+									copyright, pubdate, media);
 						}
 						event = eventReader.nextEvent();
 						break;
@@ -69,7 +72,8 @@ public class RSSFeedParser {
 						break;
 					case DESCRIPTION:
 						description = getCharacterData(event, eventReader);
-						break;
+
+								break;
 					case LINK:
 						link = getCharacterData(event, eventReader);
 						break;
@@ -79,8 +83,16 @@ public class RSSFeedParser {
 					case LANGUAGE:
 						language = getCharacterData(event, eventReader);
 						break;
-					case AUTHOR:
-						author = getCharacterData(event, eventReader);
+					case MEDIA:
+						media = getCharacterData(event,eventReader);
+
+//						Iterator<Attribute> iterator = event.asStartElement().getAttributes();
+//						while (iterator.hasNext()){
+//
+//						Attribute attribute = iterator.next();
+//						if (attribute.toString() == "URL"){
+//						media = attribute.getValue();
+//						break;}
 						break;
 					case PUB_DATE:
 						pubdate = getCharacterData(event, eventReader);
@@ -92,11 +104,12 @@ public class RSSFeedParser {
 				} else if (event.isEndElement()) {
 					if (event.asEndElement().getName().getLocalPart() == (ITEM)) {
 						FeedMessage message = new FeedMessage();
-						message.setAuthor(author);
+						message.setMedia(media);
 						message.setDescription(description);
 						message.setGuid(guid);
 						message.setLink(link);
 						message.setTitle(title);
+						message.setPubDate(pubdate);
 						feed.getMessages().add(message);
 						event = eventReader.nextEvent();
 						continue;

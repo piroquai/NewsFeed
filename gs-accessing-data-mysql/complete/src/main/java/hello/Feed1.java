@@ -11,6 +11,34 @@ public class Feed1 {
    private String link;
 	private String title;
 	private String description;
+	private String media;
+	private String content;
+	private String pubdate;
+
+	public String getMedia() {
+		return media;
+	}
+
+	public void setMedia(String media) {
+		this.media = media;
+	}
+
+	public String getContent() {
+		return content;
+	}
+
+	public void setContent(String content) {
+		this.content = content;
+	}
+
+	public String getPubdate() {
+		return pubdate;
+	}
+
+	public void setPubdate(String pubDate) {
+		this.pubdate = pubdate;
+	}
+
 
 	public String getTitle() {
 		return title;
