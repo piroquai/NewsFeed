@@ -5,12 +5,12 @@ import java.util.regex.Pattern;
 public class test {
     public static void main(String[] args) throws Exception {
         MercuryParser mercuryParser = new MercuryParser();
-        String link1 = "https://www.nytimes.com/2018/06/04/technology/apple-shuns-apology-tour.html";
+        String link1 = "http://www.foxnews.com/us/2018/06/08/alligator-reportedly-drags-woman-into-florida-pond-search-underway.html";
         String parsedArticle = mercuryParser.sendGet(link1);
 
         final Pattern patternImage = Pattern.compile("lead_image_url\":\"(.+?)\"");
         final Pattern patternDate = Pattern.compile("date_published\":\"(.+?)\"");
-        final Pattern patternContent = Pattern.compile("content\":\"(.+?)\",\"author" );
+        final Pattern patternContent = Pattern.compile("content\":\"(.+?)\",\"" );
         final Matcher matcherContent = patternContent.matcher(parsedArticle);
         final Matcher matcherDate = patternDate.matcher(parsedArticle);
         final Matcher matcherImage = patternImage.matcher(parsedArticle);

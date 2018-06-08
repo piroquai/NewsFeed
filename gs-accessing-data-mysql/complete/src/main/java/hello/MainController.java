@@ -1,6 +1,8 @@
 package hello;
 
+import org.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,12 +34,29 @@ public class MainController {
     }
     // Попытался ввести селект по id , по не работает,
     // надо добавлять колонку и разбираться с generatedvalue или самим id заполнять
-    @GetMapping(path = "/select")
-    public @ResponseBody
-    Optional<Feed1> selectFeed(@RequestParam Long id) {
-           return userRepository.findById(id);
 
+    @GetMapping(path = "/fox")
+    public @ResponseBody
+    Iterable<Feed1> selectFox() throws Exception {
+
+return userRepository.findFox();
     }
+
+    @GetMapping(path = "/nyt")
+    public @ResponseBody
+    Iterable<Feed1> selectNYT() throws Exception {
+
+        return userRepository.findNYT();
+    }
+//  вывод таблицы на выбор с помощью Selector, есть проблемы с форматом
+//    @GetMapping(path = "/select")
+//    public @ResponseBody
+//    String selectFeed(@RequestParam String table) throws Exception {
+//        Selector selector = new Selector();
+//        selector.setTable(table);
+//           return selector.getSelected(table).toString();
+
+
     @GetMapping(path = "/all")
     public @ResponseBody
     Iterable<Feed1> getAllUsers() {

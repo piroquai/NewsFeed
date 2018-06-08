@@ -34,6 +34,9 @@ dependencies {
     // Use MySQL Connector-J
     compile 'mysql:mysql-connector-java'
 
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.9.5'
+
+    compile group: 'org.json', name: 'json', version: '20180130'
     testCompile('org.springframework.boot:spring-boot-starter-test')
 }
 

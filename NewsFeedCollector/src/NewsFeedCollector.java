@@ -8,8 +8,8 @@ public class NewsFeedCollector {
 
         //parsing feed
         RSSFeedParser parser = new RSSFeedParser(
-//                    "http://feeds.bbci.co.uk/news/rss.xml?edition=int");
-                "http://rss.nytimes.com/services/xml/rss/nyt/HomePage.xml");
+                    "http://feeds.foxnews.com/foxnews/latest");
+//                "http://rss.nytimes.com/services/xml/rss/nyt/HomePage.xml");
         Feed feed = parser.readFeed();
         RSScontrol create = new RSScontrol();
 
@@ -24,7 +24,7 @@ public class NewsFeedCollector {
 
                 final Pattern patternImage = Pattern.compile("lead_image_url\":\"(.+?)\"");
                 final Pattern patternDate = Pattern.compile("date_published\":\"(.+?)\"");
-                final Pattern patternContent = Pattern.compile("content\":\"(.+?)\",\"author");
+                final Pattern patternContent = Pattern.compile("content\":\"(.+?)\",\"");
                 final Matcher matcherContent = patternContent.matcher(parsedArticle);
                 final Matcher matcherDate = patternDate.matcher(parsedArticle);
                 final Matcher matcherImage = patternImage.matcher(parsedArticle);
