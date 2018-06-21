@@ -8,59 +8,72 @@ import javax.persistence.Id;
 @Entity // This tells Hibernate to make a table out of this class
 public class Feed1 {
     @Id
-   private String link;
-	private String title;
-	private String description;
-	private String media;
-	private String content;
-	private String pubdate;
+    private String link;
+    private String title;
+    private String description;
+    private String media;
+    private String content;
+    private String pubdate;
 
-	public String getMedia() {
-		return media;
-	}
+    public int getId() {
+        return id;
+    }
 
-	public void setMedia(String media) {
-		this.media = media;
-	}
+    public void setId(int id) {
+        this.id = id;
+    }
 
-	public String getContent() {
-		return content;
-	}
+    private int id;
 
-	public void setContent(String content) {
-		this.content = content;
-	}
+    public String getMedia() {
+        return media;
+    }
 
-	public String getPubdate() {
-		return pubdate;
-	}
+    public void setMedia(String media) {
+        this.media = media;
+    }
 
-	public void setPubdate(String pubDate) {
-		this.pubdate = pubdate;
-	}
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public String getPubdate() {
+        return pubdate;
+    }
+
+    public void setPubdate(String pubdate) {
+        this.pubdate = pubdate;
+    }
 
 
-	public String getTitle() {
-		return title;
-	}
-	public void setTitle(String title) {
-		this.title = title;
-	}
+    public String getTitle() {
+        return title;
+    }
 
-	public String getLink() {
-		return link;
-	}
-	public void setLink(String link) {
-		this.link = link;
-	}
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
-	public String getDescription() {
-		return description;
-	}
-	public void setDescription(String description) {
-		this.description = description;
-	}
-    
-    
+    public String getLink() {
+        return link;
+    }
+
+    public void setLink(String link) {
+        this.link = link;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+
 }
 

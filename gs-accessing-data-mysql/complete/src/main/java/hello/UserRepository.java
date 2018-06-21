@@ -2,23 +2,48 @@ package hello;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
-
 import java.util.List;
-
-// This will be AUTO IMPLEMENTED by Spring into a Bean called userRepository
-// CRUD refers Create, Read, Update, Delete
+import org.springframework.data.repository.query.Param;
 
 public interface UserRepository extends CrudRepository<Feed1, Long> {
-    @Query(value = "SELECT * FROM Feed1 f WHERE f.link like '%nytimes%'",
-            nativeQuery=true
-    )
-    public List<Feed1> findNYT();
 
-    @Query(value = "SELECT * FROM Feed1 f WHERE f.link like '%foxnews%'",
-            nativeQuery=true
+// added methods that combine choice of portals , exclude filters and search.
+// All combinations require separate methods because there is no universal select query
+    @Query(value = "SELECT * FROM Feed1 f WHERE f.id IN :chosen", nativeQuery = true
     )
-    public List<Feed1> findFox();
+    Iterable<Feed1> findBySource(@Param("chosen") List<Integer> chosen);
 
+    @Query(value = "SELECT f.link, f.title, f.description, f.media, f.pubdate, f.content  FROM Feed1 f WHERE f.id IN :chosen AND f.content LIKE %:search%"
+    )
+    Iterable<Feed1> findBySourceWithSearch(@Param("chosen") List<Integer> chosen, @Param("search") String search);
+
+    @Query(value = "SELECT f.link, f.title, f.description, f.media, f.pubdate, f.content  FROM Feed1 f WHERE f.id IN ?1 AND f.content NOT LIKE %?2%"
+    )
+    Iterable<Feed1> findBySourceWith1Filter(List<Integer> chosen, String f1);
+
+    @Query(value = "SELECT f.link, f.title, f.description, f.media, f.pubdate, f.content  FROM Feed1 f WHERE f.id IN ?1 AND f.content NOT LIKE %?2%  AND f.content NOT LIKE %?3%"
+    )
+    Iterable<Feed1> findBySourceWith2Filters(List<Integer> chosen, String f1, String f2);
+
+    @Query(value = "SELECT f.link, f.title, f.description, f.media, f.pubdate, f.content  FROM Feed1 f WHERE f.id IN ?1 AND f.content NOT LIKE %?2%  " +
+            "AND f.content NOT LIKE %?3% AND f.content NOT LIKE %?4%"
+    )
+    Iterable<Feed1> findBySourceWith3Filters(List<Integer> chosen, String f1, String f2, String f3);
+
+    @Query(value = "SELECT f.link, f.title, f.description, f.media, f.pubdate, f.content  FROM Feed1 f WHERE f.id IN ?1 AND f.content NOT LIKE %?2%  " +
+            "AND f.content NOT LIKE %?3% AND f.content NOT LIKE %?4% AND f.content LIKE %?5%"
+    )
+    Iterable<Feed1> findBySourceWith3FiltersAndSearch(List<Integer> chosen, String f1, String f2, String f3, String search);
+
+    @Query(value = "SELECT f.link, f.title, f.description, f.media, f.pubdate, f.content  FROM Feed1 f WHERE f.id IN ?1 AND f.content NOT LIKE %?2%  " +
+            "AND f.content NOT LIKE %?3% AND f.content LIKE %?4%"
+    )
+    Iterable<Feed1> findBySourceWith2FiltersAndSearch(List<Integer> chosen, String f1, String f2, String search);
+
+    @Query(value = "SELECT f.link, f.title, f.description, f.media, f.pubdate, f.content  FROM Feed1 f WHERE f.id IN ?1 AND f.content NOT LIKE %?2%  " +
+            "AND f.content LIKE %?3%"
+    )
+    Iterable<Feed1> findBySourceWith1FiltersAndSearch(List<Integer> chosen, String f1, String search);
 }
 
 
