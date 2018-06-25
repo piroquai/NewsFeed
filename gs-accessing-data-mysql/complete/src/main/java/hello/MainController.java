@@ -1,9 +1,11 @@
 package hello;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -23,6 +25,8 @@ public class MainController {
         Iterable<Feed1> result = userRepository.findBySource(chosen);
         if (filters != null) {
             List<String> filtersList = new ArrayList<>(Arrays.asList(filters.split(",")));
+            for (int i = 0; i < filtersList.size(); i++)
+                filtersList.set(i, String.format("%%%s%%", filtersList.get(i)));
             int filtersNumber = filtersList.size();
             if (search == null) {
                 switch (filtersNumber) {
@@ -37,6 +41,7 @@ public class MainController {
                         break;
                 }
             } else {
+                search = "% " + search + " %";
                 switch (filtersNumber) {
                     case 1:
                         result = userRepository.findBySourceWith1FiltersAndSearch(chosen, filters, search);
@@ -52,11 +57,15 @@ public class MainController {
         } else {
             if (search == null)
                 result = userRepository.findBySource(chosen);
-            else
+            else {
+                search = "% " + search + " %";
                 result = userRepository.findBySourceWithSearch(chosen, search);
+            }
         }
+
         return result;
     }
+
     @GetMapping(path = "/all")
     public @ResponseBody
     Iterable<Feed1> getAllNews() {
