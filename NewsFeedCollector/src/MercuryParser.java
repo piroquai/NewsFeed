@@ -3,9 +3,9 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class MercuryParser {
+class MercuryParser {
     // HTTP GET request
-    public String sendGet(String link) throws Exception {
+    String sendGet(String link) throws Exception {
         String url = "https://mercury.postlight.com/parser?url=" + link;
         URL obj = new URL(url);
         HttpURLConnection con = (HttpURLConnection) obj.openConnection();

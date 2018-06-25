@@ -8,15 +8,15 @@ import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class RSSFeedParser {
-    static final String TITLE = "title";
-    static final String DESCRIPTION = "description";
-    static final String LINK = "guid";
-    static final String ITEM = "item";
+class RSSFeedParser {
+    private static final String TITLE = "title";
+    private static final String DESCRIPTION = "description";
+    private static final String LINK = "guid";
+    private static final String ITEM = "item";
 
-    final URL url;
+    private final URL url;
 
-    public RSSFeedParser(String feedUrl) {
+    RSSFeedParser(String feedUrl, int portalNumber) {
         try {
             this.url = new URL(feedUrl);
         } catch (MalformedURLException e) {
@@ -24,7 +24,7 @@ public class RSSFeedParser {
         }
     }
 
-    public Feed readFeed() {
+    Feed readFeed() {
         Feed feed = null;
         try {
             boolean isFeedHeader = true;

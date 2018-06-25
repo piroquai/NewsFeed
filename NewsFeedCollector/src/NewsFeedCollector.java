@@ -1,15 +1,12 @@
-import java.sql.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class NewsFeedCollector {
+abstract class NewsFeedCollector  {
 
-    public static void main(String[] args) throws SQLException {
-
+    static void parseNews(String url, int portalNumber) {
         //parsing feed
-        RSSFeedParser parser = new RSSFeedParser(
-                    "http://feeds.foxnews.com/foxnews/latest");
-//                "http://rss.nytimes.com/services/xml/rss/nyt/HomePage.xml");
+        RSSFeedParser parser = new RSSFeedParser( url, portalNumber);
+
         Feed feed = parser.readFeed();
         RSScontrol create = new RSScontrol();
 
@@ -36,11 +33,12 @@ public class NewsFeedCollector {
                 String media = matcherImage.group(1);
                 String content = matcherContent.group(1);
 
-                create.add(link, description, title, media, pubDate, content);
+                create.add(link, description, title, media, pubDate, content, portalNumber);
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            System.out.println(message);
+            System.out.println(message.link);
+            System.out.println("================");
         }
     }
 }

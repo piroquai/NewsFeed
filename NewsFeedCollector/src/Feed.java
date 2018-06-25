@@ -6,21 +6,21 @@ import java.util.List;
  */
 public class Feed {
 
-    final String title;
-    final String link;
-    final String description;
+    private final String title;
+    private final String link;
+    private final String description;
 
 
-    final List<FeedMessage> entries = new ArrayList<FeedMessage>();
+    private final List<FeedMessage> entries = new ArrayList<FeedMessage>();
 
-    public Feed(String title, String link, String description) {
+    Feed(String title, String link, String description) {
         this.title = title;
         this.link = link;
         this.description = description;
 
     }
 
-    public List<FeedMessage> getMessages() {
+    List<FeedMessage> getMessages() {
         return entries;
     }
 
