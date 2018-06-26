@@ -31,7 +31,7 @@ public class MainController {
             if (search == null) {
                 switch (filtersNumber) {
                     case 1:
-                        result = userRepository.findBySourceWith1Filter(chosen, filters);
+                        result = userRepository.findBySourceWith1Filter(chosen, filtersList.get(0));
                         break;
                     case 2:
                         result = userRepository.findBySourceWith2Filters(chosen, filtersList.get(0), filtersList.get(1));
@@ -41,10 +41,10 @@ public class MainController {
                         break;
                 }
             } else {
-                search = "% " + search + " %";
+                search = "[^A-Z]" + search + "[^A-Z]";
                 switch (filtersNumber) {
                     case 1:
-                        result = userRepository.findBySourceWith1FiltersAndSearch(chosen, filters, search);
+                        result = userRepository.findBySourceWith1FiltersAndSearch(chosen, filtersList.get(0), search);
                         break;
                     case 2:
                         result = userRepository.findBySourceWith2FiltersAndSearch(chosen, filtersList.get(0), filtersList.get(1), search);
@@ -58,7 +58,7 @@ public class MainController {
             if (search == null)
                 result = userRepository.findBySource(chosen);
             else {
-                search = "% " + search + " %";
+                search = "[^A-Z]" + search + "[^A-Z]";
                 result = userRepository.findBySourceWithSearch(chosen, search);
             }
         }
